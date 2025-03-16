@@ -1,3 +1,3 @@
 com\hexcrew\dao\AbstractDAO.class
-com\hexcrew\persistencia\Persistencia.class
 com\hexcrew\dao\InterfaceDAO.class
+com\hexcrew\dao\UsuarioDAO.class

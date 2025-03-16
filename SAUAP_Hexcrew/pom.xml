@@ -3,55 +3,55 @@
           
   
   
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
           
   
   
-  <groupId>com.hexcrew</groupId>
+    <groupId>com.hexcrew</groupId>
           
   
   
-  <artifactId>SAUAP_Hexcrew</artifactId>
+    <artifactId>SAUAP_Hexcrew</artifactId>
           
   
   
-  <version>1.0-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
           
   
   
-  <packaging>pom</packaging>
+    <packaging>pom</packaging>
           
   
   
-  <modules>
+    <modules>
                     
     
     
-    <module>entidad</module>
+        <module>entidad</module>
                     
     
     
-    <module>persistencia</module>
+        <module>persistencia</module>
             
     
-    <module>negocio</module>
+        <module>negocio</module>
           
     
-    <module>vista</module>
+        <module>vista</module>
       
-  </modules>
+    </modules>
           
   
   
-  <properties>
+    <properties>
                     
     
     
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
                 
   
   
-  </properties>
+    </properties>
       
 
 

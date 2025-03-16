@@ -463,7 +463,6 @@ p{
     color:var(--primary-color-text)
 }
 .layout-content{
-    margin-left:250px;
     padding-top:70px
 }
 .layout-content .content-section{

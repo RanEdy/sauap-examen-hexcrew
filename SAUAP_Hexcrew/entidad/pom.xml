@@ -15,6 +15,13 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.36</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
     <properties>
         <maven.compiler.release>23</maven.compiler.release>

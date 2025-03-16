@@ -1,1 +1,4 @@
-com\hexcrew\negocio\Negocio.class
+com\hexcrew\delegate\UsuarioDelegate.class
+com\hexcrew\delegate\IUsuarioDelegate.class
+com\hexcrew\integracion\ServiceFacadeLocator.class
+com\hexcrew\facade\UsuarioFacade.class

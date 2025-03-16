@@ -1,7 +1,7 @@
 package com.hexcrew.dao;
 
 import java.util.List;
-
+import jakarta.ejb.Local;
 /**
  *
  * @author Erandi
@@ -10,6 +10,7 @@ import java.util.List;
  * @param T 
  * Nombre de la clase del modelo de dato o Entidad (Ejemplo: Usuario)
  */
+@Local
 public interface InterfaceDAO<T>
 {
     T save(T entity);
