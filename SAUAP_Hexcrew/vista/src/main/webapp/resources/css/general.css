@@ -35,3 +35,8 @@ body
 {
     font-family: "Bahnschrift", sans-serif;
 }
+
+.botones-contenedor{
+    text-align: center;
+    white-space: nowrap;
+}
