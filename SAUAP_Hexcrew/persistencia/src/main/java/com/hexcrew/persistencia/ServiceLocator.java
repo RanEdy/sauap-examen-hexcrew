@@ -7,6 +7,7 @@ package com.hexcrew.persistencia;
 import com.hexcrew.dao.AdministradorDAO;
 import com.hexcrew.dao.ProfesorDAO;
 import com.hexcrew.dao.UsuarioDAO;
+import com.hexcrew.dao.UnidadAprendizajeDAO;
 import jakarta.ejb.EJB;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Singleton;
@@ -27,6 +28,8 @@ public class ServiceLocator {
     private ProfesorDAO profesorDAO;
     @EJB
     private AdministradorDAO administradorDAO;
+    @EJB
+    private UnidadAprendizajeDAO unidadAprendizajeDAO;
 
     public UsuarioDAO getUsuarioDAOInstance() {
         return usuarioDAO;
@@ -38,5 +41,9 @@ public class ServiceLocator {
 
     public AdministradorDAO getAdministradorDAOInstance() {
         return administradorDAO;
+    }
+    
+    public UnidadAprendizajeDAO getUnidadAprendizajeDAOInstance() {
+        return unidadAprendizajeDAO;
     }
 }
