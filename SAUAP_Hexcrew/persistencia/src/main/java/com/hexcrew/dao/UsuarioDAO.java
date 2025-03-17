@@ -21,7 +21,10 @@ public class UsuarioDAO extends AbstractDAO<Usuario>
     public List<Usuario> usuariosLogin(String email, String password)
     {
         String jpql = "SELECT u FROM Usuario u WHERE u.email = :email AND u.password = :password";
-        Map<String, Object> parametros = Map.of("email", email, "password", password);
+        Map<String, Object> parametros = Map.of(
+                "email", email, 
+                "password", password
+        );
         
         return super.executeQuery(jpql, parametros);
     }

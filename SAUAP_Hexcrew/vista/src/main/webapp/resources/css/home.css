@@ -1,0 +1,15 @@
+
+.bg-boton
+{
+    background: rgba(255, 255, 255, 0.0) !important;
+}
+
+.btn-icon-large .ui-button-icon-left {
+    font-size: 2rem !important; /* Ajusta al tamaño que necesites */
+}
+
+.bg-boton:hover
+{
+    background: rgba(255, 255, 255, 0.1) !important;
+    transition: ease-in 0.1s !important;
+}

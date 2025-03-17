@@ -19,5 +19,5 @@ public class ProfesorDAO extends AbstractDAO<Profesor>
     {
         super(Profesor.class);
     }
-    
+
 }

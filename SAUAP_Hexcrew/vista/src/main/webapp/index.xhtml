@@ -3,13 +3,57 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
       xmlns:p="primefaces"
-      xmlns:f="jakarta.faces.core">
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets">
+
+    <h:outputText value="#{honmeUI}" style="display:none;" />
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{homeUI.Init}" />
+    </f:metadata>
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css" />
-        
+        <h:outputStylesheet library="css" name="general.css" />
+        <h:outputStylesheet library="css" name="home.css" />
     </h:head>
     <h:body>
-        
+        <h:form class="w-full h-full">
+            <div class="h-full w-full flex flex-direction-column overflow-hidden">
+                <!-- Menu -->
+
+                <div class="min-w-10rem w-15rem max-w-20rem gradiente-verde align-content-center w-full">
+                    <p:commandButton value="PROFESORES"
+                                     icon="pi pi-users"
+                                     actionListener="#{homeUI.setContenido('profesores.xhtml')}"
+                                     update="contenidoPanel"
+                                     styleClass="text-white font-type-2 font-bold text-1xl w-full py-4 bg-boton btn-icon-large"
+                                     style="border: none !important;"/>
+
+                    <p:commandButton value="UNIDADES DE APRENDIZAJE"
+                                     actionListener="#{homeUI.setContenido('unidades.xhtml')}"
+                                     icon="pi pi-book"
+                                     update="contenidoPanel"
+                                     styleClass="text-white font-type-2 font-bold text-1xl w-full py-4 bg-boton btn-icon-large"
+                                     style="border: none !important;"/>
+                </div>
+
+                <!-- Panel Derecho -->
+                <div class="w-full h-full grid grid-nogutter m-0">
+
+                    <!-- Panel Superior info de usuario -->
+                    <div class="col-12 h-7rem w-full shadow-4">
+
+                    </div>
+
+                    <!-- Panel de Contenido -->
+                    <div id="contenidoDiv" class="h-full w-full col-12 bg-gray-0">
+                        <p:outputPanel id="contenidoPanel">
+                            <ui:include src="#{homeUI.contenido}"/>
+                        </p:outputPanel>
+                    </div>
+                </div>
+
+            </div>
+        </h:form>
     </h:body>
 </html>
