@@ -4,7 +4,9 @@
  */
 package com.hexcrew.facade;
 
+import com.hexcrew.entidad.Profesor;
 import jakarta.ejb.Local;
+import java.util.List;
 
 /**
  *
@@ -13,5 +15,5 @@ import jakarta.ejb.Local;
 @Local
 public interface IProfesorFacade
 {
-    
+    public List<Profesor> obtenerLista();
 }

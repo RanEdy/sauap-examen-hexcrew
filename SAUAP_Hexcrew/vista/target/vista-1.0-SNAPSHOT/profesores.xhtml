@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="primefaces"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <h:outputStylesheet library="css" name="general.css" />
+    </h:head>
+    <h:body>
+        <div class="card h-full w-full">
+            <h:form id="form">
+                <p:dataTable var="profesor" value="#{profesoresUI.listaProfesores}">
+                    <p:column>
+                    </p:column>
+                    <p:column styleClass="font-type-2 text-2xl" headerText="Numero de Profesor">
+                        <h:outputText value="#{profesor.numProfesor}"></h:outputText>
+                    </p:column>
+                    <p:column styleClass="font-type-2 text-2xl" headerText="Nombre">
+                        <h:outputText value="#{profesor.usuario.nombre}"></h:outputText>
+                    </p:column>
+                    <p:column styleClass="font-type-2 text-2xl" headerText="Correo">
+                        <h:outputText value="#{profesor.usuario.email}"></h:outputText>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </div>
+    </h:body>
+</html>

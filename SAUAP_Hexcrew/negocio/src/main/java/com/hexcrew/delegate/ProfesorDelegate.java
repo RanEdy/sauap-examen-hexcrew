@@ -4,7 +4,11 @@
  */
 package com.hexcrew.delegate;
 
+import com.hexcrew.dao.ProfesorDAO;
+import com.hexcrew.entidad.Profesor;
+import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
+import java.util.List;
 
 /**
  *
@@ -13,5 +17,12 @@ import jakarta.ejb.Stateless;
 @Stateless
 public class ProfesorDelegate implements IProfesorDelegate
 {
+    @EJB
+    private ProfesorDAO dao;
+    
+    @Override
+    public List<Profesor> listar() {
+        return dao.findAll();
+    }
     
 }

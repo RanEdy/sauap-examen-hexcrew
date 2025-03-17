@@ -7,6 +7,8 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:/SAUAPJsfDS</jta-data-source>
         <class>com.hexcrew.entidad.Usuario</class>
+        <class>com.hexcrew.entidad.Profesor</class>
+        <class>com.hexcrew.entidad.Administrador</class>
         <properties>
             <property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.WildFlyStandAloneJtaPlatform"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>

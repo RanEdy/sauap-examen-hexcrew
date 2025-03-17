@@ -3,6 +3,7 @@ package com.hexcrew.entidad;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
@@ -32,7 +33,7 @@ public class Profesor implements Serializable
     public Integer getNumProfesor() { return numProfesor; }
     public void setNumProfesor(Integer numProfesor) { this.numProfesor = numProfesor; }
     
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @MapsId
     @JoinColumn(name = "idusuario")
     private Usuario usuario;

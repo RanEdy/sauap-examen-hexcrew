@@ -1,6 +1,8 @@
 package com.hexcrew.delegate;
 
+import com.hexcrew.entidad.Profesor;
 import jakarta.ejb.Local;
+import java.util.List;
 
 /**
  *
@@ -10,5 +12,5 @@ import jakarta.ejb.Local;
 @Local
 public interface IProfesorDelegate
 {
-    
+    public List<Profesor> listar();
 }
