@@ -1,3 +1,6 @@
-com\hexcrew\dao\AbstractDAO.class
+com\hexcrew\persistencia\ServiceLocator.class
+com\hexcrew\dao\ProfesorDAO.class
 com\hexcrew\dao\InterfaceDAO.class
+com\hexcrew\dao\AbstractDAO.class
+com\hexcrew\dao\AdministradorDAO.class
 com\hexcrew\dao\UsuarioDAO.class

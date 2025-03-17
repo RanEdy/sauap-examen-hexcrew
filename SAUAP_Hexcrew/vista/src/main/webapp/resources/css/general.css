@@ -1,0 +1,37 @@
+
+/* 
+    Created on : 16 mar 2025, 12:19:49 p.m.
+    Author     : Usuario
+*/
+
+body
+{
+    margin: 0;
+    height: 100vh;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale
+}
+
+
+
+.gradiente-verde
+{
+    background: linear-gradient(45deg, #035C7D, #14CD68) !important;
+}
+
+.text-gradiente-verde
+{
+    background: linear-gradient(to right, #035C7D, #14CD68);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.font-type-1
+{
+    font-family: "Segoe UI Black", sans-serif;
+}
+
+.font-type-2
+{
+    font-family: "Bahnschrift", sans-serif;
+}

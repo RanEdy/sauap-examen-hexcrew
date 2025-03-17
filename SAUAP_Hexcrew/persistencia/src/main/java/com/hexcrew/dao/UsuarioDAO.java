@@ -1,16 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.hexcrew.dao;
 
 import com.hexcrew.entidad.Usuario;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.RequestScoped;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
- * @author Usuario
+ * @author Erandi
  */
 @Stateless
 public class UsuarioDAO extends AbstractDAO<Usuario>
@@ -21,4 +18,11 @@ public class UsuarioDAO extends AbstractDAO<Usuario>
         super(Usuario.class);
     }
     
+    public List<Usuario> usuariosLogin(String email, String password)
+    {
+        String jpql = "SELECT u FROM Usuario u WHERE u.email = :email AND u.password = :password";
+        Map<String, Object> parametros = Map.of("email", email, "password", password);
+        
+        return super.executeQuery(jpql, parametros);
+    }
 }

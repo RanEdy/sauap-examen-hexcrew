@@ -2,12 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.hexcrew.integracion;
+package com.hexcrew.facade;
+
+import jakarta.ejb.Local;
 
 /**
  *
  * @author Usuario
  */
-public class ServiceFacadeLocator {
+@Local
+public interface IAdministradorFacade
+{
     
 }

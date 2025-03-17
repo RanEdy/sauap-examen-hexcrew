@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="primefaces"
+      xmlns:f="jakarta.faces.core">
+    
+    <h:outputText value="#{loginUI}" style="display:none;" />
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{loginUI.Init}" />
+    </f:metadata>
+    <h:head>
+        <title>SAUAP | Inicio de Sesion</title>
+        <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css" />
+        <h:outputStylesheet name="primeicons/primeicons.css" />
+        <h:outputStylesheet library="css" name="general.css" />
+        <h:outputStylesheet library="css" name="login.css" />
+    </h:head>
+    <h:body>
+        <div class="h-full grid grid-nogutter m-0">
+            <div id="presentation" class="col-6 gradiente-verde">
+                <div class="h-full align-content-center text-center text-white-alpha-90 font-type-1 p-3 font-bold">
+                    <h3 class="text-4xl"> SISTEMA DE ASIGNACIÓN DE UNIDADES DE APRENDIZAJE Y PROFESORES </h3>
+                    <p:graphicImage name="img/uabc-logo-white.png" class="mt-8 h-5 w-5"/>
+                    <h3 class="text-8xl"> SAUAP </h3>
+                </div>
+            </div>
+
+            <div id="loginForm" class="col-6">
+
+                <div class="h-full align-content-center p-3">
+                    
+                    <div class="text-7xl text-gradiente-verde text-center font-bold font-type-1">Bienvenido!</div>
+                    <hr class="w-11 mb-8"></hr>
+                    
+                    <h:form>
+                        <p:growl id="growl" showDetail="true"/>
+                        <!-- Renglon 1 : Email -->
+                        <div class="grid ui-fluid justify-content-center">
+                            <div class="col-10 col-offset-0">
+                                <div class="ui-inputgroup font-type-2">
+                                    <div class="ui-inputgroup-addon"><i class="pi pi-envelope text-3xl"></i></div>
+                                    <p:inputText class="text-2xl" placeholder="Email" value="#{loginUI.email}"/>
+                                </div>
+                            </div>
+                            <div class="col-10 col-offset-0">
+                                <div class="ui-inputgroup font-type-2">
+                                    <div class="ui-inputgroup-addon"><i class="pi pi-lock text-3xl"></i></div>
+                                    <p:password class="text-2xl" placeholder="Password" value="#{loginUI.password}"/>
+                                </div>
+                            </div>
+                            <p:commandButton value="INICIAR SESIÓN"
+                                             actionListener="#{loginUI.iniciarSesion}"
+                                             update="growl"
+                                             styleClass="mt-8 font-type-1 font-bold text-3xl w-6 rounded-button gradiente-verde"
+                                             style="border: none !important;"/>
+                        </div>
+                    </h:form>
+                    
+                </div>
+
+            </div>
+        </div>
+    </h:body>
+</html>

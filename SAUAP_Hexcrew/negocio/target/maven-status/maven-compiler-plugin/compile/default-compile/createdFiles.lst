@@ -1,4 +1,13 @@
-com\hexcrew\delegate\UsuarioDelegate.class
+com\hexcrew\negocio\ServiceFacadeLocator.class
+com\hexcrew\facade\IUsuarioFacade.class
 com\hexcrew\delegate\IUsuarioDelegate.class
-com\hexcrew\integracion\ServiceFacadeLocator.class
+com\hexcrew\facade\IAdministradorFacade.class
 com\hexcrew\facade\UsuarioFacade.class
+com\hexcrew\delegate\ProfesorDelegate.class
+com\hexcrew\delegate\AdministradorDelegate.class
+com\hexcrew\facade\IProfesorFacade.class
+com\hexcrew\delegate\IAdministradorDelegate.class
+com\hexcrew\delegate\UsuarioDelegate.class
+com\hexcrew\facade\AdministradorFacade.class
+com\hexcrew\delegate\IProfesorDelegate.class
+com\hexcrew\facade\ProfesorFacade.class

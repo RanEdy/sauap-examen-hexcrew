@@ -20,4 +20,5 @@ public interface IUsuarioDelegate
     public Usuario buscar(Object id);
     public void eliminar(Usuario u);
     public List<Usuario> listar();
+    public Usuario obtenerUsuarioLogin(String email, String password);
 }

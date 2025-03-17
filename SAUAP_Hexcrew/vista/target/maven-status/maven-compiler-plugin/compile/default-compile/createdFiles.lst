@@ -1,1 +1,2 @@
-com\hexcrew\helper\UsuarioHelper.class
+com\hexcrew\ui\LoginUI.class
+com\hexcrew\helper\LoginHelper.class

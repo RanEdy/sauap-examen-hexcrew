@@ -2,6 +2,7 @@ package com.hexcrew.dao;
 
 import java.util.List;
 import jakarta.ejb.Local;
+import java.util.Map;
 /**
  *
  * @author Erandi
@@ -13,10 +14,11 @@ import jakarta.ejb.Local;
 @Local
 public interface InterfaceDAO<T>
 {
-    T save(T entity);
-    T update(T entity);
-    T find(T entity);
-    void delete(T entity);
-    List<T> findAll();
+    public T save(T entity);
+    public T update(T entity);
+    public T find(Object entity);
+    public void delete(T entity);
+    public List<T> findAll();
+    public List<T> executeQuery(String jpql, Map<String, Object> params);
     
 }

@@ -44,4 +44,12 @@ public class UsuarioDelegate implements IUsuarioDelegate
     public void eliminar(Usuario u) {
         dao.delete(u);
     }
+    
+    @Override
+    public Usuario obtenerUsuarioLogin(String email, String password)
+    {
+        List<Usuario> usuarios = dao.usuariosLogin(email, password);
+        
+        return usuarios.size() == 1 ? usuarios.get(0) : null;
+    }
 }

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.hexcrew.entidad;
 
 import jakarta.persistence.Column;
@@ -11,12 +8,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.io.Serializable;
-import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
@@ -25,7 +18,6 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
 @Table(name="usuario")
 public class Usuario implements Serializable
@@ -50,7 +42,7 @@ public class Usuario implements Serializable
     @Column(name="password")
     String password;
     public String getPassword() { return password; }
-    public void setPassword(String nombre) { this.password = password; }
+    public void setPassword(String password) { this.password = password; }
     
     @Column(name="nombre")
     String nombre;
