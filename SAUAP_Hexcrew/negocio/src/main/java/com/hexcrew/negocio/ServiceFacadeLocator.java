@@ -4,6 +4,7 @@ import com.hexcrew.facade.AdministradorFacade;
 import com.hexcrew.facade.IAdministradorFacade;
 import com.hexcrew.facade.IProfesorFacade;
 import com.hexcrew.facade.IUsuarioFacade;
+import com.hexcrew.facade.IUnidadAprendizajeFecade;
 import com.hexcrew.facade.ProfesorFacade;
 import com.hexcrew.facade.UsuarioFacade;
 import jakarta.ejb.EJB;
@@ -26,8 +27,11 @@ public class ServiceFacadeLocator
     private IProfesorFacade profesorFacade;
     @EJB
     private IAdministradorFacade administradorFacade;
+    @EJB
+    private IUnidadAprendizajeFecade unidadAprendizajeFecade;
     
     public IUsuarioFacade getUsuarioFacadeInstance() { return usuarioFacade; }
     public IProfesorFacade getProfesorFacadeInstance() { return profesorFacade; }
     public IAdministradorFacade getAdministradorFacadeInstance() { return administradorFacade; }
+    public IUnidadAprendizajeFecade getUnidadAprendizajeFacadeInstance() { return unidadAprendizajeFecade; }
 }
