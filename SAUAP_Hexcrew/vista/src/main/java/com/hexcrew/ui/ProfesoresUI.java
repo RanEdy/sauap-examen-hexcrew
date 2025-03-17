@@ -5,10 +5,8 @@
 package com.hexcrew.ui;
 
 import com.hexcrew.entidad.Profesor;
-import com.hexcrew.helper.LoginHelper;
 import com.hexcrew.helper.ProfesorHelper;
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -28,6 +26,8 @@ import lombok.Setter;
 @ViewScoped
 public class ProfesoresUI implements Serializable {
     private List<Profesor> listaProfesores;
+    public List<Profesor> getListaProfesores() { return listaProfesores; }
+    public void setListaProfesores(List<Profesor> lista) { listaProfesores = lista; }
     
     @Inject
     private ProfesorHelper helper;
@@ -36,7 +36,5 @@ public class ProfesoresUI implements Serializable {
     public void init(){
         listaProfesores = helper.obtenerLista();
     }
-    
-    
     
 }
