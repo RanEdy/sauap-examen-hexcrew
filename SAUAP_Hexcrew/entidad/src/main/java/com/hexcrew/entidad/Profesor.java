@@ -6,10 +6,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -41,4 +45,10 @@ public class Profesor implements Serializable
     private Usuario usuario;
     public Usuario getUsuario() { return usuario; }
     public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+    
+    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinTable(name="asignacion", joinColumns= @JoinColumn(name="idprofe"), inverseJoinColumns = @JoinColumn(name="idunidad"))
+    private Set<UnidadAprendizaje> unidades = new HashSet<>();
+    public Set<UnidadAprendizaje> getUnidades() { return unidades; }
+    public void setUnidades(Set<UnidadAprendizaje> unidades) { this.unidades = unidades; }
 }

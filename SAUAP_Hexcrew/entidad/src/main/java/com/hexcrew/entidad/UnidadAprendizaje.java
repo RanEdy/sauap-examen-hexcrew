@@ -3,14 +3,18 @@ package com.hexcrew.entidad;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -52,4 +56,10 @@ public class UnidadAprendizaje implements Serializable{
     Integer horaslab;
     public Integer gethoraslab() { return horaslab; }
     public void sethoraslab(Integer horaslab) { this.horaslab = horaslab; }
+    
+    @ManyToMany(mappedBy = "unidades", fetch = FetchType.LAZY)
+    private Set<Profesor> profesores = new HashSet<>();
+    
+    public Set<Profesor> getProfesores() { return profesores; }
+    public void setProfesores(Set<Profesor> profesores) { this.profesores = profesores; }
 }
