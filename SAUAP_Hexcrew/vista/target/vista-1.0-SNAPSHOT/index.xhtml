@@ -21,13 +21,14 @@
             <div class="h-full w-full flex flex-direction-column overflow-hidden">
                 
                 <!-- Menu -->
-                <div class="flex flex-column min-w-10rem w-15rem max-w-20rem gradiente-verde w-full">
+                <div class="flex flex-column min-w-15rem w-15rem max-w-20rem gradiente-verde w-full">
                     
-                    <div class="sticky-top top-0 align-items-center">
-                        <p:graphicImage name="img/uabc-logo-white.png" class="h-5 w-5"/>
-                    </div>
+                    <!-- Logo -->
+                    <p:graphicImage name="img/uabc-logo-white.png" class="flex h-9rem w-7rem align-self-center pt-3"/>
                     
-                    <div class="align-items-center align-self-center w-full">
+                    
+                    <!-- Opciones -->
+                    <div class="flex flex-column justify-content-center align-items-center w-full h-full mt-4">
                         <p:commandButton value="PROFESORES"
                                          icon="pi pi-users"
                                          actionListener="#{homeUI.setContenido('profesores.xhtml')}"
@@ -36,7 +37,7 @@
                                          style="border: none !important;"/>
 
                         <p:commandButton value="UNIDADES DE APRENDIZAJE"
-                                         actionListener="#{homeUI.setContenido('unidades.xhtml')}"
+                                         actionListener="#{homeUI.setContenido('AltasUnidadesAprendizaje.xhtml')}"
                                          icon="pi pi-book"
                                          update="contenidoPanel"
                                          styleClass="text-white font-type-2 font-bold text-1xl w-full py-4 bg-boton btn-icon-large"
@@ -48,8 +49,14 @@
                 <div class="w-full h-full grid grid-nogutter m-0">
 
                     <!-- Panel Superior info de usuario -->
-                    <div class="col-12 h-7rem w-full shadow-4">
-
+                    <div class="col-12 h-7rem w-full shadow-4 flex align-items-center justify-content-between px-4">
+                        <div class="flex align-items-center justify-content-end w-full">
+                            <div>
+                                <h2 class="m-0 font-bold font-type-2 text-800 text-right"> #{homeUI.usuarioActual.nombre}</h2>
+                                <p class="m-0 text-sm font-type-2 text-800 text-right">#{homeUI.usuarioActual.email}</p>
+                            </div>
+                            <p:avatar icon="pi pi-user" styleClass="ml-3 text-white gradiente-verde" size="xlarge" shape="circle"/>
+                        </div>
                     </div>
 
                     <!-- Panel de Contenido -->

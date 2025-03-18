@@ -45,6 +45,8 @@ public class LoginUI implements Serializable {
     }
 
     private Usuario usuarioSesion;
+    public Usuario getUsuarioSesion() { return usuarioSesion; }
+    public void setUsuarioSesion(Usuario u) { usuarioSesion = u; }
 
     @PostConstruct
     public void Init() {
