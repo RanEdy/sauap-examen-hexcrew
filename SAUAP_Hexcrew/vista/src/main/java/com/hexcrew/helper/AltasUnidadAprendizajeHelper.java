@@ -8,30 +8,36 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import java.io.Serializable;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.PrimeFaces;
 
 /**
- * 
- * @author Luis Aponte, Enrique Gudiño, Erandi Moreno, Xavier Ortiz y Angel Villagomez 
+ *
+ * @author Luis Aponte, Enrique Gudiño, Erandi Moreno, Xavier Ortiz y Angel
+ * Villagomez
  */
-
-@Getter @Setter
+@Getter
+@Setter
 @Named("AltasUnidadAprendizajeHelper")
 @RequestScoped
-public class AltasUnidadAprendizajeHelper implements Serializable{
+public class AltasUnidadAprendizajeHelper implements Serializable {
+
     @EJB
     ServiceFacadeLocator locator;
-    
-    public AltasUnidadAprendizajeHelper()
-    {
+
+    public AltasUnidadAprendizajeHelper() {
         System.out.println("AltasUnidadAprendizajeUI construido");
     }
-    
-    public UnidadAprendizaje guardar(UnidadAprendizaje u)
-    {
+
+    public UnidadAprendizaje guardar(UnidadAprendizaje u) {
         UnidadAprendizaje unidadAprendizaje = locator.getUnidadAprendizajeFacadeInstance().setUnidadAprendizaje(u);
         return unidadAprendizaje;
+    }
+
+    public List<UnidadAprendizaje> obtenerListaUnidades()
+    {
+        return locator.getUnidadAprendizajeFacadeInstance().obtenerListaUnidades();
     }
 }

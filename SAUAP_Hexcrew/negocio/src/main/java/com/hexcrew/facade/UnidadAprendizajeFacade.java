@@ -4,6 +4,7 @@ import com.hexcrew.entidad.UnidadAprendizaje;
 import com.hexcrew.delegate.IUnidadAprendizajeDelegate;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
+import java.util.List;
 
 /**
  * 
@@ -19,5 +20,10 @@ public class UnidadAprendizajeFacade implements IUnidadAprendizajeFacade{
     public UnidadAprendizaje setUnidadAprendizaje(UnidadAprendizaje u)
     {
         return delegate.guardar(u);
+    }
+    
+    @Override
+    public List<UnidadAprendizaje> obtenerListaUnidades(){
+        return delegate.listar();
     }
 }
