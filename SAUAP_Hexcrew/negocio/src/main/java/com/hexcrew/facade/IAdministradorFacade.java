@@ -1,5 +1,6 @@
 package com.hexcrew.facade;
 
+import com.hexcrew.entidad.Administrador;
 import jakarta.ejb.Local;
 
 /**
@@ -9,5 +10,5 @@ import jakarta.ejb.Local;
 @Local
 public interface IAdministradorFacade
 {
-    
+    public Administrador getAdministradorLogin(String email, String password);
 }

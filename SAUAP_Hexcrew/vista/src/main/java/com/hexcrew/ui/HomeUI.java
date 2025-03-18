@@ -1,5 +1,6 @@
 package com.hexcrew.ui;
 
+import com.hexcrew.entidad.Administrador;
 import com.hexcrew.entidad.Usuario;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
@@ -25,8 +26,8 @@ public class HomeUI implements Serializable
     @Inject
     private LoginUI loginUI;
     private String contenido;
-    private Usuario usuarioActual;
-    public Usuario getUsuarioActual() { return usuarioActual; }
+    private Administrador usuarioActual;
+    public Administrador getUsuarioActual() { return usuarioActual; }
     
 
     public void setContenido(String contenido)
@@ -48,7 +49,7 @@ public class HomeUI implements Serializable
     public void Init()
     {
         System.out.println("homeUI construido");
-        usuarioActual = loginUI.getUsuarioSesion();
+        usuarioActual = loginUI.getAdministradorSesion();
     }
     
 }

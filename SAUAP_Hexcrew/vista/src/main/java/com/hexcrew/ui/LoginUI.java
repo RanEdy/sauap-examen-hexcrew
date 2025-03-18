@@ -1,5 +1,6 @@
 package com.hexcrew.ui;
 
+import com.hexcrew.entidad.Administrador;
 import com.hexcrew.entidad.Usuario;
 import com.hexcrew.helper.LoginHelper;
 import jakarta.annotation.PostConstruct;
@@ -45,8 +46,8 @@ public class LoginUI implements Serializable {
         this.password = password;
     }
 
-    private Usuario usuarioSesion;
-    public Usuario getUsuarioSesion() { return usuarioSesion; }
+    private Administrador administradorSesion;
+    public Administrador getAdministradorSesion() { return administradorSesion; }
     @PostConstruct
     public void Init() {
         System.out.println("loginUI construido");
@@ -59,8 +60,8 @@ public class LoginUI implements Serializable {
     }
 
     public void iniciarSesion() {
-        usuarioSesion = helper.iniciarSesion(email, password);
-        if (usuarioSesion != null) {
+        administradorSesion = helper.iniciarSesion(email, password);
+        if (administradorSesion != null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exitoso", "Sesion Iniciada"));
             resetFields();
             try {

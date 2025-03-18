@@ -16,4 +16,5 @@ public interface IAdministradorDelegate {
     public Administrador buscar(Object id);
     public void eliminar(Administrador u);
     public List<Administrador> listar();
+    public Administrador obtenerAdministradorLogin(String email, String password);
 }

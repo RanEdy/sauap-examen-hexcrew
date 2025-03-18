@@ -42,4 +42,12 @@ public class AdministradorDelegate implements IAdministradorDelegate {
         return dao.findAll();
     }
     
+    @Override
+    public Administrador obtenerAdministradorLogin(String email, String password)
+    {
+        List<Administrador> administradores = dao.AdministradoresLogin(email, password);
+        
+        return administradores.size() == 1 ? administradores.get(0) : null;
+    }
+    
 }
