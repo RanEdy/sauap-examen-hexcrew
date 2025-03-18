@@ -51,4 +51,16 @@ public class Profesor implements Serializable
     private Set<UnidadAprendizaje> unidades = new HashSet<>();
     public Set<UnidadAprendizaje> getUnidades() { return unidades; }
     public void setUnidades(Set<UnidadAprendizaje> unidades) { this.unidades = unidades; }
+    
+    public void addUnidadAprendizaje(UnidadAprendizaje unidad)
+    {
+        this.unidades.add(unidad);
+        unidad.getProfesores().add(this);
+    }
+    
+    public void removeUnidadAprendizaje(UnidadAprendizaje unidad)
+    {
+        this.unidades.remove(unidad);
+        unidad.getProfesores().remove(this);
+    }
 }

@@ -18,7 +18,7 @@ public interface IUsuarioDelegate
 {
     public Usuario guardar(Usuario u);
     public Usuario editar(Usuario u);
-    public Usuario buscar(Object id);
+    public Usuario buscar(Integer id);
     public void eliminar(Usuario u);
     public List<Usuario> listar();
     public Usuario obtenerUsuarioLogin(String email, String password);

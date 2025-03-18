@@ -36,5 +36,15 @@ public class ProfesorDelegate implements IProfesorDelegate
     public Profesor registrar(Profesor p) {
         return dao.save(p);
     }
-    
+
+    @Override
+    public Profesor editar(Profesor p) {
+        return dao.update(p);
+    }
+
+    @Override
+    public Profesor buscar(Integer id) {
+        return dao.find(id);
+    }
+
 }

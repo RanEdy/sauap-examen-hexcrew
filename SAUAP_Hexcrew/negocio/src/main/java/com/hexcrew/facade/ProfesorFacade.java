@@ -36,5 +36,15 @@ public class ProfesorFacade implements IProfesorFacade
     public Profesor guardarProfesor(Profesor p) {
         return delegate.registrar(p);
     }
+
+    @Override
+    public Profesor editarProfesor(Profesor p) {
+        return delegate.editar(p);
+    }
+
+    @Override
+    public Profesor buscarProfesor(Integer id) {
+        return delegate.buscar(id);
+    }
     
 }

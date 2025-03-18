@@ -59,7 +59,6 @@ public class UnidadAprendizaje implements Serializable{
     
     @ManyToMany(mappedBy = "unidades", fetch = FetchType.LAZY)
     private Set<Profesor> profesores = new HashSet<>();
-    
     public Set<Profesor> getProfesores() { return profesores; }
     public void setProfesores(Set<Profesor> profesores) { this.profesores = profesores; }
 }

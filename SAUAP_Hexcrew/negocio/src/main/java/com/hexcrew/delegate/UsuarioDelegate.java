@@ -37,7 +37,7 @@ public class UsuarioDelegate implements IUsuarioDelegate
     }
 
     @Override
-    public Usuario buscar(Object id) {
+    public Usuario buscar(Integer id) {
         return dao.find(id);
     }
 

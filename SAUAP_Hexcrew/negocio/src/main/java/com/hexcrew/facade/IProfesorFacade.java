@@ -18,4 +18,6 @@ public interface IProfesorFacade
     public List<Profesor> obtenerLista();
     public void eliminarProfesor(Profesor p);
     public Profesor guardarProfesor(Profesor p);
+    public Profesor editarProfesor(Profesor p);
+    public Profesor buscarProfesor(Integer id);
 }
