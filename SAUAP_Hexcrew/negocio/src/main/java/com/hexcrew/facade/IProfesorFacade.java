@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.hexcrew.facade;
 
 import com.hexcrew.entidad.Profesor;
@@ -16,7 +12,7 @@ import java.util.List;
 public interface IProfesorFacade
 {
     public List<Profesor> obtenerLista();
-    public void eliminarProfesor(Profesor p);
+    public boolean eliminarProfesor(Profesor p);
     public Profesor guardarProfesor(Profesor p);
     public Profesor editarProfesor(Profesor p);
     public Profesor buscarProfesor(Integer id);

@@ -1,14 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.hexcrew.delegate;
 
 import com.hexcrew.dao.ProfesorDAO;
 import com.hexcrew.entidad.Profesor;
+import com.hexcrew.entidad.UnidadAprendizaje;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -27,9 +25,14 @@ public class ProfesorDelegate implements IProfesorDelegate
     }
     
     @Override
-    public void eliminar(Profesor p)
+    public boolean eliminar(Profesor p)
     {
-        dao.delete(p);
+        Set<UnidadAprendizaje> Asignaciones = p.getUnidades();
+        if(Asignaciones.isEmpty()){
+            dao.delete(p);
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -1,4 +1,3 @@
-
 package com.hexcrew.entidad;
 
 import jakarta.persistence.Column;

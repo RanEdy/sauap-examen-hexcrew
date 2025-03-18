@@ -1,4 +1,5 @@
- package com.hexcrew.dao;
+package com.hexcrew.dao;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;

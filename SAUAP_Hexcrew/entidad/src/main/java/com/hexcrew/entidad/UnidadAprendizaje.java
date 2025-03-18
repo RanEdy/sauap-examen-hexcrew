@@ -57,7 +57,7 @@ public class UnidadAprendizaje implements Serializable{
     public Integer gethoraslab() { return horaslab; }
     public void sethoraslab(Integer horaslab) { this.horaslab = horaslab; }
     
-    @ManyToMany(mappedBy = "unidades", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "unidades", fetch = FetchType.EAGER)
     private Set<Profesor> profesores = new HashSet<>();
     public Set<Profesor> getProfesores() { return profesores; }
     public void setProfesores(Set<Profesor> profesores) { this.profesores = profesores; }

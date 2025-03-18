@@ -13,7 +13,7 @@ import java.util.List;
 public interface IProfesorDelegate
 {
     public List<Profesor> listar();
-    public void eliminar(Profesor p);
+    public boolean eliminar(Profesor p);
     public Profesor registrar(Profesor p);
     public Profesor editar(Profesor p);
     public Profesor buscar(Integer id);

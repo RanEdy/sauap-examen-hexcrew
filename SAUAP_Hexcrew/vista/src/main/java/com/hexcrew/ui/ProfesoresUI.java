@@ -128,7 +128,6 @@ public class ProfesoresUI implements Serializable {
                         new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se seleccionó ningún profesor"));
                 return;
             }
-
             if (helper.eliminarProfesor(profesorSeleccionado)) {
                 listaProfesores.remove(profesorSeleccionado);
                 FacesContext.getCurrentInstance().addMessage(null,

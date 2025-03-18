@@ -46,7 +46,7 @@ public class Profesor implements Serializable
     public Usuario getUsuario() { return usuario; }
     public void setUsuario(Usuario usuario) { this.usuario = usuario; }
     
-    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name="asignacion", joinColumns= @JoinColumn(name="idprofe"), inverseJoinColumns = @JoinColumn(name="idunidad"))
     private Set<UnidadAprendizaje> unidades = new HashSet<>();
     public Set<UnidadAprendizaje> getUnidades() { return unidades; }
