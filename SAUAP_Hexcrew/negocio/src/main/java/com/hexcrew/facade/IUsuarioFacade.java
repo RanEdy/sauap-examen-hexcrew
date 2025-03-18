@@ -1,6 +1,5 @@
 package com.hexcrew.facade;
 
-import com.hexcrew.entidad.Usuario;
 import jakarta.ejb.Local;
 
 /**
@@ -11,5 +10,5 @@ import jakarta.ejb.Local;
 @Local
 public interface IUsuarioFacade
 {
-    public Usuario getUsuarioLogin(String email, String password);
+    
 }

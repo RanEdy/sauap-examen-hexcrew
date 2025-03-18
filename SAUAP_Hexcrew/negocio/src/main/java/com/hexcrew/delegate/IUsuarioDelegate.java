@@ -17,5 +17,5 @@ public interface IUsuarioDelegate
     public Usuario buscar(Integer id);
     public void eliminar(Usuario u);
     public List<Usuario> listar();
-    public Usuario obtenerUsuarioLogin(String email, String password);
+//    public Usuario obtenerUsuarioLogin(String email, String password);
 }

@@ -1,5 +1,6 @@
 package com.hexcrew.helper;
 
+import com.hexcrew.entidad.Administrador;
 import com.hexcrew.entidad.Usuario;
 import com.hexcrew.negocio.ServiceFacadeLocator;
 import jakarta.ejb.EJB;
@@ -30,10 +31,10 @@ public class LoginHelper implements Serializable
         System.out.println("loginUI construido");
     }
     
-    public Usuario iniciarSesion(String email, String password)
+    public Administrador iniciarSesion(String email, String password)
     {
-        Usuario usuario = locator.getUsuarioFacadeInstance().getUsuarioLogin(email, password);
-        return usuario;
+        Administrador admin = locator.getAdministradorFacadeInstance().getAdministradorLogin(email, password);
+        return admin;
     }
     
 }
