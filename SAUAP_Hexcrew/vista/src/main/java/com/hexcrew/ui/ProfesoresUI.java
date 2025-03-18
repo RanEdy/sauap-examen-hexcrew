@@ -7,6 +7,8 @@ package com.hexcrew.ui;
 import com.hexcrew.entidad.Profesor;
 import com.hexcrew.helper.ProfesorHelper;
 import jakarta.annotation.PostConstruct;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -53,6 +55,21 @@ public class ProfesoresUI implements Serializable {
             listaProfesores.sort(Comparator.comparing(p -> p.getUsuario().getNombre()));
         }
     }
+    
+    public void eliminarProfesor(){
+        System.out.println("RECIBI MENSAJE DEL XHTML ------------------------------------------------");
+        mensajeEliminacion(true);
+    }
+
+    public void mensajeEliminacion(boolean estado) {
+        if(estado){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminación exitosa", "El profesor a sido eliminado"));
+        }
+        else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Eliminación fallida", "El profesor tiene unidades asignadas"));
+        }
+    }
+    
 }
 
 /**
