@@ -5,8 +5,10 @@
 package com.hexcrew.ui;
 
 
+import com.hexcrew.entidad.Usuario;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.Serializable;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,11 @@ import lombok.NoArgsConstructor;
 @ViewScoped
 public class HomeUI implements Serializable
 {
+    @Inject
+    private LoginUI loginUI;
+    
+    private Usuario usuarioActual;
+    public Usuario getUsuarioActual() { return usuarioActual; }
     
     private String contenido;
     public String getContenido() { return contenido; }
@@ -31,6 +38,7 @@ public class HomeUI implements Serializable
     {
         System.out.println("homeUI construido");
         contenido = "";
+        usuarioActual = loginUI.getUsuarioSesion();
     }
     
 }
