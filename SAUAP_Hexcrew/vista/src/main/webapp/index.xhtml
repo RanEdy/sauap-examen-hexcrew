@@ -41,8 +41,14 @@
                 <div class="w-full h-full grid grid-nogutter m-0">
 
                     <!-- Panel Superior info de usuario -->
-                    <div class="col-12 h-7rem w-full shadow-4">
-
+                    <div class="col-12 h-7rem w-full shadow-4 flex align-items-center justify-content-between px-4">
+                        <div class="flex align-items-center justify-content-end w-full">
+                            <div>
+                                <h2 class="m-0 font-bold font-type-2 text-800 text-right"> #{homeUI.usuarioActual.nombre}</h2>
+                                <p class="m-0 text-sm font-type-2 text-800 text-right">#{homeUI.usuarioActual.email}</p>
+                            </div>
+                            <p:avatar icon="pi pi-user" styleClass="ml-3 text-white gradiente-verde" size="xlarge" shape="circle"/>
+                        </div>
                     </div>
 
                     <!-- Panel de Contenido -->
