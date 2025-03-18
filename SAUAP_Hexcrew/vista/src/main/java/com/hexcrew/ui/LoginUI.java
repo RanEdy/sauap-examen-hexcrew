@@ -45,7 +45,7 @@ public class LoginUI implements Serializable {
     }
 
     private Usuario usuarioSesion;
-
+    public Usuario getUsuarioSesion() { return usuarioSesion; }
     @PostConstruct
     public void Init() {
         System.out.println("loginUI construido");

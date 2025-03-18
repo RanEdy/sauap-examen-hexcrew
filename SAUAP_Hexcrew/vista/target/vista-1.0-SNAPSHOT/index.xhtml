@@ -20,8 +20,10 @@
         <h:form class="w-full h-full">
             <div class="h-full w-full flex flex-direction-column overflow-hidden">
                 <!-- Menu -->
-
-                <div class="min-w-10rem w-15rem max-w-20rem gradiente-verde align-content-center w-full">
+                <div class="flex flex-column min-w-10rem w-15rem max-w-20rem gradiente-verde align-content-center w-full">
+                    <!-- Logo -->
+                    <p:graphicImage name="img/uabc-logo-white.png" class="sticky-top flex h-9rem w-7rem align-self-center justify-content-center pt-3"/>
+                    
                     <p:commandButton value="PROFESORES"
                                      icon="pi pi-users"
                                      actionListener="#{homeUI.setContenido('profesores.xhtml')}"
@@ -41,7 +43,7 @@
                 <div class="w-full h-full grid grid-nogutter m-0">
 
                     <!-- Panel Superior info de usuario -->
-                    <div class="col-12 h-7rem w-full shadow-4 flex align-items-center justify-content-between px-4">
+                    <div class="col-12 h-7rem w-full shadow-4 flex align-items-center px-4">
                         <div class="flex align-items-center justify-content-end w-full">
                             <div>
                                 <h2 class="m-0 font-bold font-type-2 text-800 text-right"> #{homeUI.usuarioActual.nombre}</h2>
@@ -49,16 +51,15 @@
                             </div>
                             <p:avatar icon="pi pi-user" styleClass="ml-3 text-white gradiente-verde" size="xlarge" shape="circle"/>
                         </div>
-                    </div>
 
-                    <!-- Panel de Contenido -->
-                    <div id="contenidoDiv" class="h-full w-full col-12 bg-gray-0">
-                        <p:outputPanel id="contenidoPanel">
-                            <ui:include src="#{homeUI.contenido}"/>
-                        </p:outputPanel>
+                        <!-- Panel de Contenido -->
+                        <div id="contenidoDiv" class="h-full w-full col-12 bg-gray-0">
+                            <p:outputPanel id="contenidoPanel">
+                                <ui:include src="#{homeUI.contenido}"/>
+                            </p:outputPanel>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </h:form>
     </h:body>
