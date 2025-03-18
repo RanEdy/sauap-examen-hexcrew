@@ -117,7 +117,8 @@ public class ProfesoresUI implements Serializable {
     
     public void seleccionarProfesor(Profesor profesor) {
         this.profesorSeleccionado = profesor;
-        System.out.println("Profesor seleccionado para eliminar: "
+        // Para eliminar o para consultar
+        System.out.println("Profesor seleccionado: " 
                 + (profesor != null ? profesor.getUsuario().getNombre() : "NULL"));
     }
 
@@ -145,6 +146,8 @@ public class ProfesoresUI implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Error inesperado: " + e.getMessage()));
         }
+        
+        
     }
 
 }
