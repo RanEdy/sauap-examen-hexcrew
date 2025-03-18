@@ -9,6 +9,7 @@
         <class>com.hexcrew.entidad.Usuario</class>
         <class>com.hexcrew.entidad.Profesor</class>
         <class>com.hexcrew.entidad.Administrador</class>
+        <class>com.hexcrew.entidad.UnidadAprendizaje</class>
         <properties>
             <property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.WildFlyStandAloneJtaPlatform"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
