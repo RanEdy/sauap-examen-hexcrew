@@ -31,4 +31,17 @@ public class ProfesorHelper implements Serializable{
     {
         return locator.getProfesorFacadeInstance().obtenerLista();
     }
+    
+    public boolean eliminarProfesor(Profesor p)
+    {
+        System.out.println("Profesor Eliminado: " + p.getUsuario().getNombre());
+        locator.getProfesorFacadeInstance().eliminarProfesor(p);
+        return true;
+    }
+    
+    public boolean registrarProfesor(Profesor p)
+    {
+        locator.getProfesorFacadeInstance().guardarProfesor(p);
+        return true;
+    }
 }

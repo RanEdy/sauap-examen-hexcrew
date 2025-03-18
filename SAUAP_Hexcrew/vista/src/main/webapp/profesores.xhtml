@@ -1,51 +1,179 @@
-
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
       xmlns:p="primefaces"
       xmlns:f="jakarta.faces.core">
+
+    <h:outputText value="#{profesoresUI}" style="display:none;" />
+
     <h:head>
+        <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css" />
         <h:outputStylesheet library="css" name="general.css" />
-        <f:metadata>
-            <f:event type="preRenderView" listener="#{profesoresUI.init}" />
-        </f:metadata>
+        <h:outputStylesheet library="css" name="home.css" />
     </h:head>
     <h:body>
-        <div class="card h-full w-full">
-            <h:form id="form">
-                <p:dataTable var="profesor" 
+        <h:form id="form" class="w-full h-full">
+            <div class="card h-full w-full p-3">
+                <p:growl id="mensajes" showDetail="true"/>
+
+
+
+
+                <!-- ======================= Dialog de Confirmacion para eliminacion ========================= -->
+                <p:dialog header="Confirmar eliminación" widgetVar="customDialog" modal="true" showEffect="fade" hideEffect="fade" width="350">
+                    <p class="mb-4">¿Está seguro que desea eliminar este profesor?</p>
+
+                    <div class="flex justify-content-end">
+                        <p:commandButton value="Cancelar" 
+                                         styleClass="ui-button-secondary mr-2" 
+                                         onclick="PF('customDialog').hide()" 
+                                         type="button"/>
+
+                        <p:commandButton value="Eliminar"
+                                         styleClass="ui-button-danger"
+                                         action="#{profesoresUI.eliminarProfesor()}"
+                                         process="@this"
+                                         oncomplete="PF('customDialog').hide()"
+                                         update="form:mensajes form:tablaProfesores"/>
+
+                    </div>
+                </p:dialog>
+                <!-- =========================================================================================== -->
+
+
+
+
+
+                <!-- ======================= Dialog de Registrar ========================= -->
+                <p:dialog widgetVar="registrarDialog" modal="true" showEffect="fade" width="50vw" height="75vh">
+
+                    <p class="border-round-3xl gradiente-verde text-center font-type-1 text-5xl text-50">REGISTRAR PROFESOR</p>
+
+
+                    <p:messages id="msgCampos" showDetail="true" closable="true">
+                    </p:messages>
+
+                    <h:panelGrid id="campos" columns="1" cellpadding="7" class="w-full">
+
+                        <p:outputLabel for="nombre">Nombre</p:outputLabel>
+                        <p:inputText id="nombre" type="text" value="#{profesoresUI.profesorRegistrar.usuario.nombre}" required="true"
+                                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
+
+                        <p:outputLabel for="apellido">Apellido</p:outputLabel>
+                        <p:inputText id="apellido" type="text" value="#{profesoresUI.profesorRegistrar.usuario.apellido}" required="true"
+                                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
+
+                        <p:outputLabel for="email">Email</p:outputLabel>
+                        <p:inputText id="email" type="text" value="#{profesoresUI.profesorRegistrar.usuario.email}" required="true"
+                                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
+
+                        <p:outputLabel for="num">Numero de Profesor</p:outputLabel>
+                        <p:inputText id="num" type="text" value="#{profesoresUI.profesorRegistrar.numProfesor}" required="true"
+                                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
+
+                        <p:outputLabel for="rfc">RFC</p:outputLabel>
+                        <p:inputText id="rfc" type="text" value="#{profesoresUI.profesorRegistrar.usuario.rfc}" required="true"
+                                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
+                        <p:outputLabel for="password">Password</p:outputLabel>
+                        <p:inputText id="password" type="text" value="#{profesoresUI.profesorRegistrar.usuario.password}" required="true"
+                                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
+                    </h:panelGrid>
+
+                    <div class="flex justify-content-center mt-8">
+                        <p:commandButton value="CANCELAR" 
+                                         styleClass="ui-button-danger mr-6 border-round-3xl text-50 font-type-1 text-4xl"
+                                         onclick="PF('registrarDialog').hide()" 
+                                         type="button"/>
+
+                        <p:commandButton value="ACEPTAR"
+                                         styleClass="gradiente-verde border-round-3xl text-50 font-type-1 text-4xl"
+                                         style="border: none !important;"
+                                         process="@this"
+                                         actionListener="#{profesoresUI.registrarProfesor}"
+                                         update="msgCampos form:tablaProfesores"/>
+                    </div>
+                </p:dialog>
+                <!-- =================================================================== -->
+
+
+
+
+
+
+                <!-- ======================= Boton de Registrar ========================= -->
+                <p:commandButton value="REGISTRAR"
+                                 styleClass="m-4  font-type-1 font-bold text-3xl w-2 rounded-button gradiente-verde"
+                                 style="border: none !important;"
+                                 oncomplete="PF('registrarDialog').show()"/>
+                <!-- =================================================================== -->
+
+
+
+
+
+
+                <!-- ======================= Tabla de Profesores ========================= -->
+                <p:dataTable id="tablaProfesores" var="profesor" 
                              value="#{profesoresUI.listaProfesores}"
-                             sortMode="single"
-                             >
-                    <p:growl id="mensajes" showDetail="true"/>
-                    <p:column styleClass="botones-contenedor">
-                        <p:button icon="pi pi-bars" title="Consultar" styleClass="gradiente-verde mx-2 w-3 h-3"
-                                  style="border: none !important;"/>
-                        <p:commandButton icon="pi pi-times" 
-                                         title="Eliminar" 
-                                         action="#{profesoresUI.eliminarProfesor}"
-                                         update="mensajes"
+                             scrollable="true"
+                             sortMode="single">
+                    <p:column styleClass="botones-contenedor" selectionBox="false">
+
+
+
+                        <p:commandButton
+                            icon="pi pi-bars"
+                            styleClass="gradiente-verde mx-2 w-3 h-3"
+                            style="border: none !important;"
+                            process="@this"
+                            action="#{profesoresUI.seleccionarProfesor(profesor)}"/>
+
+                        <p:commandButton icon="pi pi-times"
                                          styleClass="bg-red-600 mx-2 w-3 h-3"
-                                         style="border: none !important;">
-                            <p:confirm header="Eliminación" message="¿Estas seguro que quieres eliminar al profesor?" icon="pi pi-info-circle"/>             
-                        </p:commandButton>
+                                         style="border: none !important;"
+                                         process="@this"
+                                         update="tablaProfesores"
+                                         action="#{profesoresUI.seleccionarProfesor(profesor)}"
+                                         oncomplete="PF('customDialog').show()"/>
                     </p:column>
-                    <p:column styleClass="font-type-2 text-2xl" headerText="Número de Profesor" sortBy="#{profesor.numProfesor}">
-                        <h:outputText value="#{profesor.numProfesor}"></h:outputText>
+
+                    <p:column 
+                        styleClass="font-type-2 text-2xl"
+                        style="border: none !important;"
+                        headerText="Número de Profesor"
+                        selectionBox="false">
+                        <h:outputText value="#{profesor.numProfesor}"/>
                     </p:column>
-                    <p:column styleClass="font-type-2 text-2xl" headerText="Nombre" sortBy="#{profesor.usuario.nombre}" >
-                        <h:outputText value="#{profesor.usuario.nombre}"></h:outputText>
+
+                    <p:column 
+                        styleClass="font-type-2 text-2xl"
+                        style="border: none !important;"
+                        headerText="Nombre"
+                        sortBy="#{profesor.usuario.nombre}"
+                        selectionBox="false">
+                        <h:outputText value="#{profesor.usuario.nombre}"/>
                     </p:column>
-                    <p:column styleClass="font-type-2 text-2xl" headerText="Correo" sortBy="#{profesor.usuario.email}">
-                        <h:outputText value="#{profesor.usuario.email}"></h:outputText>
+
+                    <p:column
+                        styleClass="font-type-2 text-2xl"
+                        style="border: none !important;"
+                        headerText="Apellido(s)"
+                        selectionBox="false">
+                        <h:outputText value="#{profesor.usuario.apellido}"/>
+                    </p:column>
+
+                    <p:column
+                        styleClass="font-type-2 text-2xl"
+                        style="border: none !important;"
+                        headerText="Correo"
+                        selectionBox="false">
+                        <h:outputText value="#{profesor.usuario.email}"/>
                     </p:column>
                 </p:dataTable>
-                
-                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
-                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat" />
-                        <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" />
-                </p:confirmDialog>
-                
-            </h:form>
-        </div>
+                <!-- =================================================================== -->
+
+
+
+            </div>
+        </h:form>
     </h:body>
 </html>

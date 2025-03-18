@@ -5,8 +5,10 @@
 package com.hexcrew.ui;
 
 import com.hexcrew.entidad.Profesor;
+import com.hexcrew.entidad.Usuario;
 import com.hexcrew.helper.ProfesorHelper;
 import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
@@ -20,6 +22,7 @@ import org.primefaces.model.SortOrder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
 
 /**
@@ -33,6 +36,11 @@ import org.primefaces.model.SortMeta;
 @ViewScoped
 public class ProfesoresUI implements Serializable {
 
+    //Campos de Registro
+    private Profesor profesorRegistrar;
+    public Profesor getProfesorRegistrar() { return profesorRegistrar; }
+    
+    
     private List<Profesor> listaProfesores;
 
     public List<Profesor> getListaProfesores() {
@@ -43,41 +51,100 @@ public class ProfesoresUI implements Serializable {
         listaProfesores = lista;
     }
 
+    private Profesor profesorSeleccionado;
+
+    public Profesor getProfesorSeleccionado() {
+        return profesorSeleccionado;
+    }
+
+    public void setProfesorSeleccionado(Profesor p) {
+        profesorSeleccionado = p;
+    }
+
     @Inject
     private ProfesorHelper helper;
-    
 
     @PostConstruct
     public void init() {
-        listaProfesores = helper.obtenerLista(); 
+        profesorRegistrar = new Profesor();
+        profesorRegistrar.setUsuario(new Usuario());
         
-        if(listaProfesores != null && !listaProfesores.isEmpty()){
+        if (listaProfesores == null) {
+            listaProfesores = helper.obtenerLista();
+        }
+
+        //Ordenar la lista
+        if (listaProfesores != null && !listaProfesores.isEmpty()) {
             listaProfesores.sort(Comparator.comparing(p -> p.getUsuario().getNombre()));
         }
-    }
-    
-    public void eliminarProfesor(){
-        System.out.println("RECIBI MENSAJE DEL XHTML ------------------------------------------------");
-        mensajeEliminacion(true);
+        System.out.println("profesoresUI Bean Creado!");
     }
 
-    public void mensajeEliminacion(boolean estado) {
-        if(estado){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminación exitosa", "El profesor a sido eliminado"));
+    
+    public void registrarProfesor()
+    {
+        if (profesorRegistrar == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN REGISTRO:", "El profesor no cuenta con campos validos"));
+            return;
         }
-        else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Eliminación fallida", "El profesor tiene unidades asignadas"));
+        if (profesorRegistrar.getUsuario() == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN REGISTRO:", "El profesor no cuenta con campos validos"));
+            return;
         }
+        Usuario u = profesorRegistrar.getUsuario();
+        if (u.getNombre() == ""
+                || u.getApellido() == ""
+                || u.getEmail() == ""
+                || u.getPassword() == ""
+                || u.getRfc() == ""
+                ||
+                profesorRegistrar.getNumProfesor() == null)
+        {
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN REGISTRO:", "Campos no validos"));
+            return;
+        }
+        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro exitoso", "El profesor ha sido registrado"));
+        PrimeFaces.current().ajax().update("form:mensajes");
+        PrimeFaces.current().executeScript("PF('form:registroDialog').hide()");
+        
+        helper.registrarProfesor(profesorRegistrar);
+        listaProfesores = helper.obtenerLista();
     }
     
+    public void seleccionarProfesor(Profesor profesor) {
+        this.profesorSeleccionado = profesor;
+        System.out.println("Profesor seleccionado para eliminar: "
+                + (profesor != null ? profesor.getUsuario().getNombre() : "NULL"));
+    }
+
+   
+    public void eliminarProfesor() {
+        try {
+            if (profesorSeleccionado == null) {
+                System.out.println("ERROR: Profesor seleccionado es NULL");
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se seleccionó ningún profesor"));
+                return;
+            }
+
+            if (helper.eliminarProfesor(profesorSeleccionado)) {
+                listaProfesores.remove(profesorSeleccionado);
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminación exitosa", "El profesor ha sido eliminado"));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Eliminación fallida", "El profesor tiene unidades asignadas"));
+            }
+        } catch (Exception e) {
+            System.out.println("EXCEPCIÓN AL ELIMINAR: " + e.getMessage());
+            e.printStackTrace();
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Error inesperado: " + e.getMessage()));
+        }
+    }
+
 }
-
-/**
- * private List<SortMeta> sortBy;
- * //listaProfesores.sort(Comparator.comparing(p -> p.getUsuario().getNombre()));
-        //sortBy = new ArrayList<>();
-        //sortBy.add(SortMeta.builder()
-                //.field("usuario.nombre")
-                //.order(SortOrder.ASCENDING)
-                //.build()); 
- */

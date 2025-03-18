@@ -25,4 +25,15 @@ public class ProfesorDelegate implements IProfesorDelegate
         return dao.findAll();
     }
     
+    @Override
+    public void eliminar(Profesor p)
+    {
+        dao.delete(p);
+    }
+
+    @Override
+    public Profesor registrar(Profesor p) {
+        return dao.save(p);
+    }
+    
 }

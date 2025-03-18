@@ -11,24 +11,22 @@
         <h:outputStylesheet library="css" name="general.css" />
     </h:head>
     <h:body>
-        <h:form>
+        <h:form id="unidadesForm" class="w-full h-full">
             <p:panel header="REGISTRAR UNIDAD DE APRENDIZAJE" class="">
                 <div class="min-w-10rem w-15rem max-w-20rem gradiente-verde align-content-center w-full">
                     <p:panelGrid columns="2" columnClasses="label,value">
-                        <h:outputLabel for="clave" value="Clave:" />
-                        <p:inputText id="clave" value="#{AltasUnidadAprendizajeIU.clave}" />
 
                         <h:outputLabel for="nombre" value="Nombre:" />
-                        <p:inputText id="nombre" value="#{AltasUnidadAprendizajeIU.nombre}" />
+                        <p:inputText id="nombre" value="#{AltasUnidadAprendizajeIU.nombre}" required="true" />
 
                         <h:outputLabel for="horasClase" value="Horas Clase:" />
-                        <p:spinner id="horasClase" value="#{AltasUnidadAprendizajeIU.horasClase}" />
+                        <p:spinner id="horasClase" value="#{AltasUnidadAprendizajeIU.horasClase}" required="true" />
 
                         <h:outputLabel for="horasTaller" value="Horas Taller:" />
-                        <p:spinner id="horasTaller" value="#{AltasUnidadAprendizajeIU.horasTaller}" />
+                        <p:spinner id="horasTaller" value="#{AltasUnidadAprendizajeIU.horasTaller}" required="true"/>
 
                         <h:outputLabel for="horasLab" value="Horas Lab:" />
-                        <p:spinner id="horasLab" value="#{AltasUnidadAprendizajeIU.horasLab}" />
+                        <p:spinner id="horasLab" value="#{AltasUnidadAprendizajeIU.horasLab}" required="true"/>
                     </p:panelGrid>
                     
                     <p:commandButton value="Aceptar" 
@@ -36,7 +34,6 @@
                                      styleClass="text-white font-type-2 font-bold text-1xl w-full py-4 bg-boton btn-icon-large"
                                      style="border: none !important;"/>
                     <p:commandButton value="Cancelar" 
-                                     action="#{AltasUnidadAprendizajeIU.setContenido('index.xhtml')}" 
                                      styleClass="text-white font-type-2 font-bold text-1xl w-full py-4 bg-boton btn-icon-large"
                                      style="border: none !important;"/>
                 </div>

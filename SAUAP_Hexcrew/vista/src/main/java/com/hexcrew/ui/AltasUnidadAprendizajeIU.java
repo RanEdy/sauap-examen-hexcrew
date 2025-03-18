@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Named("AltasUnidadAprendizajeIU")
 @SessionScoped
 public class AltasUnidadAprendizajeIU implements Serializable{
-    private Integer clave;
+    
     private String nombre;
     private Integer horasClase;
     private Integer horasTaller;
@@ -25,11 +25,10 @@ public class AltasUnidadAprendizajeIU implements Serializable{
     @Inject
     private AltasUnidadAprendizajeHelper helper;
 
-    public Integer getClave(){
-        return clave;
-    }
-    public void setClave(Integer clave) {
-        this.clave = clave;
+    @PostConstruct
+    public void init()
+    {
+        System.out.println("Unidades Bean UI creado!");
     }
     
     public String getNombre(){
@@ -61,12 +60,13 @@ public class AltasUnidadAprendizajeIU implements Serializable{
     }
     
     public void guardar(){
+        System.out.println("Unidades: Metodo Guardar llamado");
         UnidadAprendizaje unidad = new UnidadAprendizaje();
-        setClave(clave);
-        setNombre(nombre);
-        setHorasClase(horasClase);
-        setHorasTaller(horasTaller);
-        setHorasLab(horasLab);
+       
+        unidad.setnombreunidad(nombre);
+        unidad.sethorasclase(horasClase);
+        unidad.sethorastaller(horasTaller);
+        unidad.sethoraslab(horasLab);
 
         try {
             helper.guardar(unidad);
@@ -75,8 +75,4 @@ public class AltasUnidadAprendizajeIU implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al guardar la Unidad de Aprendizaje", e.getMessage()));
         }
     }
-    
-    private String contenido;
-    public String getContenido() { return contenido; }
-    public void setContenido(String contenido) { this.contenido = contenido; }
 }

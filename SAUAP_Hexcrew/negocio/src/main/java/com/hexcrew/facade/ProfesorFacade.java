@@ -25,4 +25,15 @@ public class ProfesorFacade implements IProfesorFacade
     public List<Profesor> obtenerLista(){
         return delegate.listar();
     }
+
+    @Override
+    public void eliminarProfesor(Profesor p) {
+        delegate.eliminar(p);
+    }
+
+    @Override
+    public Profesor guardarProfesor(Profesor p) {
+        return delegate.registrar(p);
+    }
+    
 }

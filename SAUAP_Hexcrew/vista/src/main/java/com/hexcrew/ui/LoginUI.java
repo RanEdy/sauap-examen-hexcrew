@@ -64,7 +64,7 @@ public class LoginUI implements Serializable {
             resetFields();
             try {
                 FacesContext context = FacesContext.getCurrentInstance();
-                context.getExternalContext().redirect("index.xhtml");
+                context.getExternalContext().redirect("index.xhtml"); //index.html
             } catch (IOException e) {
                 System.out.println("No se pudo redirigir la pagina");
             }

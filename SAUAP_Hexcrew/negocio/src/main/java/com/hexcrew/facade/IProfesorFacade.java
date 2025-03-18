@@ -16,4 +16,6 @@ import java.util.List;
 public interface IProfesorFacade
 {
     public List<Profesor> obtenerLista();
+    public void eliminarProfesor(Profesor p);
+    public Profesor guardarProfesor(Profesor p);
 }
