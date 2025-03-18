@@ -10,6 +10,7 @@ import jakarta.ejb.EJB;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
+import com.hexcrew.facade.IUnidadAprendizajeFacade;
 
 /**
  *
@@ -26,8 +27,11 @@ public class ServiceFacadeLocator
     private IProfesorFacade profesorFacade;
     @EJB
     private IAdministradorFacade administradorFacade;
+    @EJB
+    private IUnidadAprendizajeFacade unidadAprendizajeFacade;
     
     public IUsuarioFacade getUsuarioFacadeInstance() { return usuarioFacade; }
     public IProfesorFacade getProfesorFacadeInstance() { return profesorFacade; }
     public IAdministradorFacade getAdministradorFacadeInstance() { return administradorFacade; }
+    public IUnidadAprendizajeFacade getUnidadAprendizajeFacadeInstance() { return unidadAprendizajeFacade; }
 }

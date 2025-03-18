@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="primefaces"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets">
+    <h:head>
+        <title>REGISTRAR UNIDAD DE APRENDIZAJE</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="general.css" />
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel header="REGISTRAR UNIDAD DE APRENDIZAJE" class="">
+                <div class="min-w-10rem w-15rem max-w-20rem gradiente-verde align-content-center w-full">
+                    <p:panelGrid columns="2" columnClasses="label,value">
+                        <h:outputLabel for="clave" value="Clave:" />
+                        <p:inputText id="clave" value="#{AltasUnidadAprendizajeIU.clave}" />
+
+                        <h:outputLabel for="nombre" value="Nombre:" />
+                        <p:inputText id="nombre" value="#{AltasUnidadAprendizajeIU.nombre}" />
+
+                        <h:outputLabel for="horasClase" value="Horas Clase:" />
+                        <p:spinner id="horasClase" value="#{AltasUnidadAprendizajeIU.horasClase}" />
+
+                        <h:outputLabel for="horasTaller" value="Horas Taller:" />
+                        <p:spinner id="horasTaller" value="#{AltasUnidadAprendizajeIU.horasTaller}" />
+
+                        <h:outputLabel for="horasLab" value="Horas Lab:" />
+                        <p:spinner id="horasLab" value="#{AltasUnidadAprendizajeIU.horasLab}" />
+                    </p:panelGrid>
+                    
+                    <p:commandButton value="Aceptar" 
+                                     action="#{AltasUnidadAprendizajeIU.guardar}" 
+                                     styleClass="text-white font-type-2 font-bold text-1xl w-full py-4 bg-boton btn-icon-large"
+                                     style="border: none !important;"/>
+                    <p:commandButton value="Cancelar" 
+                                     action="#{AltasUnidadAprendizajeIU.setContenido('index.xhtml')}" 
+                                     styleClass="text-white font-type-2 font-bold text-1xl w-full py-4 bg-boton btn-icon-large"
+                                     style="border: none !important;"/>
+                </div>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
