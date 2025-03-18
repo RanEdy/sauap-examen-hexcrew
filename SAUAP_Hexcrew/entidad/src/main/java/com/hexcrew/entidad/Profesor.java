@@ -12,10 +12,12 @@ import jakarta.persistence.Table;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
 /**
  *
- * @author Erandi
+ * @author Luis Aponte, Enrique Gudiño, Erandi Moreno, Xavier Ortiz y Angel Villagomez 
  */
+
 @AllArgsConstructor
 @NoArgsConstructor
 

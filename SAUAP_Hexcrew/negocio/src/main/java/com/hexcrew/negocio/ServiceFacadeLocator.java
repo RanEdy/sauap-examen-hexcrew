@@ -14,8 +14,9 @@ import com.hexcrew.facade.IUnidadAprendizajeFacade;
 
 /**
  *
- * @author Usuario
+ * @author Luis Aponte, Enrique Gudiño, Erandi Moreno, Xavier Ortiz y Angel Villagomez 
  */
+
 @Singleton
 @Startup
 @LocalBean

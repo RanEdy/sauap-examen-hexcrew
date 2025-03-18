@@ -9,8 +9,9 @@ import java.util.Map;
 
 /**
  *
- * @author Erandi
+ * @author Luis Aponte, Enrique Gudiño, Erandi Moreno, Xavier Ortiz y Angel Villagomez 
  */
+ 
 public abstract class AbstractDAO<T> implements InterfaceDAO<T>
 {
     private final Class<T> entityClass;

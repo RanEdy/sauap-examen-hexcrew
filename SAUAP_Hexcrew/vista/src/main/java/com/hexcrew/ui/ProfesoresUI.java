@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.hexcrew.ui;
 
 import com.hexcrew.entidad.Profesor;
@@ -27,8 +23,9 @@ import org.primefaces.model.SortMeta;
 
 /**
  *
- * @author charl
+ * @author Luis Aponte, Enrique Gudiño, Erandi Moreno, Xavier Ortiz y Angel Villagomez 
  */
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -109,7 +106,7 @@ public class ProfesoresUI implements Serializable {
         
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro exitoso", "El profesor ha sido registrado"));
         PrimeFaces.current().ajax().update("form:mensajes");
-        PrimeFaces.current().executeScript("PF('form:registroDialog').hide()");
+        PrimeFaces.current().executeScript("PF('form:registrarDialog').hide()");
         
         helper.registrarProfesor(profesorRegistrar);
         listaProfesores = helper.obtenerLista();

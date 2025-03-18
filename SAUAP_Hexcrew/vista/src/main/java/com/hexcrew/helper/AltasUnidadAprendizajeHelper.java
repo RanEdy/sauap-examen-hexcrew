@@ -12,6 +12,11 @@ import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.PrimeFaces;
 
+/**
+ * 
+ * @author Luis Aponte, Enrique Gudiño, Erandi Moreno, Xavier Ortiz y Angel Villagomez 
+ */
+
 @Getter @Setter
 @Named("AltasUnidadAprendizajeHelper")
 @RequestScoped

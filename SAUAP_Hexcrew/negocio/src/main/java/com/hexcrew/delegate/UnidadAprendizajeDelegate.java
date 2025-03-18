@@ -6,6 +6,11 @@ import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import java.util.List;
 
+/**
+ * 
+ * @author Luis Aponte, Enrique Gudiño, Erandi Moreno, Xavier Ortiz y Angel Villagomez 
+ */
+
 @Stateless
 public class UnidadAprendizajeDelegate implements IUnidadAprendizajeDelegate{
     @EJB

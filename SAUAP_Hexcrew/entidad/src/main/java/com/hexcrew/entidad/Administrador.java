@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 
 /**
  *
- * @author Usuario
+ * @author Luis Aponte, Enrique Gudiño, Erandi Moreno, Xavier Ortiz y Angel Villagomez 
  */
 @AllArgsConstructor
 @NoArgsConstructor

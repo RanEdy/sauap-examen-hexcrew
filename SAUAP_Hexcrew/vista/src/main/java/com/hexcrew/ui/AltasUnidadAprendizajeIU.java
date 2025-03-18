@@ -12,6 +12,11 @@ import java.io.IOException;
 import java.io.Serializable;
 import lombok.NoArgsConstructor;
 
+/**
+ * 
+ * @author Luis Aponte, Enrique Gudiño, Erandi Moreno, Xavier Ortiz y Angel Villagomez 
+ */
+
 @NoArgsConstructor
 @Named("AltasUnidadAprendizajeIU")
 @SessionScoped

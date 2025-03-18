@@ -9,8 +9,9 @@ import jakarta.ejb.Stateless;
 
 /**
  *
- * @author Erandi
+ * @author Luis Aponte, Enrique Gudiño, Erandi Moreno, Xavier Ortiz y Angel Villagomez 
  */
+
 @Stateless
 public class ProfesorDAO extends AbstractDAO<Profesor>
 {

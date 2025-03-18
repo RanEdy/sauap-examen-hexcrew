@@ -5,6 +5,11 @@ import com.hexcrew.delegate.IUnidadAprendizajeDelegate;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 
+/**
+ * 
+ * @author Luis Aponte, Enrique Gudiño, Erandi Moreno, Xavier Ortiz y Angel Villagomez 
+ */
+
 @Stateless
 public class UnidadAprendizajeFacade implements IUnidadAprendizajeFacade{
     @EJB

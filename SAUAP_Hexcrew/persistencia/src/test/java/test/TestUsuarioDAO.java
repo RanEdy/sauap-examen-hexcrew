@@ -6,7 +6,7 @@ package test;
 
 /**
  *
- * @author Usuario
+ * @author Luis Aponte, Enrique Gudiño, Erandi Moreno, Xavier Ortiz y Angel Villagomez 
  */
 import com.hexcrew.dao.UsuarioDAO;
 import com.hexcrew.entidad.Usuario;

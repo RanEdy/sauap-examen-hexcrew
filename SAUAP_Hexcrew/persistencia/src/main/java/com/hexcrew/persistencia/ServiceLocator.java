@@ -15,7 +15,7 @@ import jakarta.ejb.Startup;
 
 /**
  *
- * @author Usuario
+ * @author Luis Aponte, Enrique Gudiño, Erandi Moreno, Xavier Ortiz y Angel Villagomez 
  */
 @Singleton
 @Startup

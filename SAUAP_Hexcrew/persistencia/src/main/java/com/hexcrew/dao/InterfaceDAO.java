@@ -5,7 +5,7 @@ import jakarta.ejb.Local;
 import java.util.Map;
 /**
  *
- * @author Erandi
+ * @author Luis Aponte, Enrique Gudiño, Erandi Moreno, Xavier Ortiz y Angel Villagomez 
  * 15/03/2025
  * 
  * @param T 

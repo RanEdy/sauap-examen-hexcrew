@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.hexcrew.helper;
 
 import com.hexcrew.entidad.Profesor;
@@ -16,8 +12,9 @@ import lombok.Setter;
 
 /**
  *
- * @author charl
+ * @author Luis Aponte, Enrique Gudiño, Erandi Moreno, Xavier Ortiz y Angel Villagomez 
  */
+
 @Getter
 @Setter
 @Named("profesorHelper")
