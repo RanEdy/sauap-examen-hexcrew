@@ -1,3 +1,5 @@
+com\hexcrew\helper\AltasUnidadAprendizajeHelper.class
 com\hexcrew\ui\HomeUI.class
-com\hexcrew\ui\LoginUI.class
 com\hexcrew\helper\LoginHelper.class
+com\hexcrew\ui\AltasUnidadAprendizajeIU.class
+com\hexcrew\ui\LoginUI.class

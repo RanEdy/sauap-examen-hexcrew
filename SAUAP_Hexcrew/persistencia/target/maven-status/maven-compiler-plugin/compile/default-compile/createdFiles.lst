@@ -1,4 +1,5 @@
 com\hexcrew\persistencia\ServiceLocator.class
+com\hexcrew\dao\UnidadAprendizajeDAO.class
 com\hexcrew\dao\ProfesorDAO.class
 com\hexcrew\dao\InterfaceDAO.class
 com\hexcrew\dao\AbstractDAO.class
