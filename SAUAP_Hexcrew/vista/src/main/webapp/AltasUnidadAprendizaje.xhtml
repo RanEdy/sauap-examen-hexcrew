@@ -130,21 +130,17 @@
                                      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
 
                         <p:outputLabel for="clave">Clave</p:outputLabel>
-                        <p:inputText id="clave" type="text" value="#{unidadesUI.unidadRegistrar.claveunidadaprendizaje}" required="true"
-                                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
+                        <p:spinner id="clave" min="0" value="#{unidadesUI.unidadRegistrar.claveunidadaprendizaje}" required="true"/>
 
-                        <p:outputLabel for="horasC">Horas Clase</p:outputLabel>
-                        <p:inputText id="horasC" type="text" value="#{unidadesUI.unidadRegistrar.horasclase}" required="true"
-                                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-
-                        <p:outputLabel for="horasT">Horas Taller</p:outputLabel>
-                        <p:inputText id="horasT" type="text" value="#{unidadesUI.unidadRegistrar.horastaller}" required="true"
-                                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-
-                        <p:outputLabel for="horasL">Horas Lab</p:outputLabel>
-                        <p:inputText id="horasL" type="text" value="#{unidadesUI.unidadRegistrar.horaslab}" required="true"
-                                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                    </h:panelGrid>
+                        <p:outputLabel for="horaC">Horas Clase</p:outputLabel>
+                        <p:spinner id="horaC" min="0" max="23" value="#{unidadesUI.unidadRegistrar.horasclase}" required="true"></p:spinner>
+                        
+                        <p:outputLabel for="horaT">Horas Taller</p:outputLabel>
+                        <p:spinner id="horaT" min="0" max="23" value="#{unidadesUI.unidadRegistrar.horastaller}" required="true"></p:spinner>
+                        
+                        <p:outputLabel for="horaL">Horas Lab</p:outputLabel>
+                        <p:spinner id="horaL" min="0" max="23" value="#{unidadesUI.unidadRegistrar.horaslab}" required="true"></p:spinner>
+                        </h:panelGrid>
 
                     <div class="flex justify-content-center mt-8">
                         <p:commandButton value="CANCELAR" 
@@ -155,9 +151,8 @@
                         <p:commandButton value="ACEPTAR"
                                          styleClass="gradiente-verde border-round-3xl text-50 font-type-1 text-4xl"
                                          style="border: none !important;"
-                                         process="@this"
-                                         actionListener="#{unidadesUI.registrarUnidad}"
-                                         update="msgCampos form:tablaUnidadesA"/>
+                                         actionListener="#{unidadesUI.registrarUnidad()}"
+                                         update="form:msgCampos form:tablaUnidadesA"/>
                     </div>
                 </p:dialog>
                 <!-- =================================================================== -->
@@ -187,9 +182,6 @@
                              scrollHeight="400"
                              styleClass="h-8">
                     <p:column styleClass="botones-contenedor" selectionBox="false">
-
-
-
                         <p:commandButton
                             icon="pi pi-bars"
                             styleClass="gradiente-verde mx-2 w-3 h-3"
@@ -198,14 +190,6 @@
                             action="#{unidadesUI.seleccionarUnidad(unidad)}"
                             update=":form:consultaDialog"
                             oncomplete="PF('consultaDialog').show()"/>
-
-                        <p:commandButton icon="pi pi-times"
-                                         styleClass="bg-red-600 mx-2 w-3 h-3"
-                                         style="border: none !important;"
-                                         process="@this"
-                                         update="tablaUnidadesA"
-                                         action="#{unidadesUI.seleccionarUnidad(unidad)}"
-                                         oncomplete="PF('customDialog').show()"/>
                     </p:column>
 
                     <p:column 
@@ -221,7 +205,6 @@
                         styleClass="font-type-2 text-2xl"
                         style="border: none !important;"
                         headerText="Nombre"
-                        sortBy="#{profesor.usuario.nombre}"
                         selectionBox="false">
                         <h:outputText value="#{unidad.nombreunidad}"/>
                     </p:column>
