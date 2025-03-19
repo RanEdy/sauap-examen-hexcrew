@@ -38,9 +38,6 @@ public class UnidadesUI implements Serializable{
     private Set<Profesor> listaProfesores;
     private Integer numProfesor;
     
-    
-    
-    
     public Set<Profesor> getListaProfesores(){
         return listaProfesores;
     }
@@ -75,6 +72,7 @@ public class UnidadesUI implements Serializable{
         System.out.println("Unidades Bean UI creado!");
         unidadSeleccionada = new UnidadAprendizaje();
         unidadRegistrar = new UnidadAprendizaje();
+        numProfesor = 0;
         
         if (listaUnidades == null) {
             listaUnidades = helper.obtenerListaUnidades();
@@ -92,9 +90,9 @@ public class UnidadesUI implements Serializable{
         this.unidadSeleccionada = unidad;
         // Para eliminar o para consultar
 
-            listaProfesores = unidadSeleccionada.getProfesores();
+        listaProfesores = unidadSeleccionada.getProfesores();
         
-        System.out.println("Profesor seleccionado: " 
+        System.out.println("Unidad seleccionada: " 
                 + (unidad != null ? unidad.getnombreunidad(): "NULL"));
     }
     
@@ -106,7 +104,6 @@ public class UnidadesUI implements Serializable{
         System.out.println("Horas Clase: " + unidadRegistrar.gethorasclase());
         System.out.println("Horas Taller: " + unidadRegistrar.gethorastaller());
         System.out.println("Horas Laboratorio: " + unidadRegistrar.gethoraslab());
-        System.out.println("Prueba 1.1");
         boolean valor = helper.registrarUnidad(unidadRegistrar);
         System.out.println(valor);
         if (valor)
@@ -123,8 +120,25 @@ public class UnidadesUI implements Serializable{
         
     }
     
-    public void asignarProfesor(int numProfesor){
+    public void remover(Profesor profe)
+    {
+        if(helper.remover(profe, unidadSeleccionada))
+        {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Profesor Removido")); 
+        }
+        else
+        {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR AL REMOVER PROFESOR:", "El profesor o la unidad no son validos"));
+        }
+    }
+    
+    public void asignarProfesor(){
+        System.out.println("UnidadesUI[124]: asignarProfesor llamada ");
+        //Validar que no sea repetido
         if(helper.validarProfesor(numProfesor, unidadSeleccionada)){
+            //Validar que exista
             if(helper.asignarProfesor(numProfesor, unidadSeleccionada)){
                 listaProfesores = unidadSeleccionada.getProfesores();
                 
@@ -132,8 +146,13 @@ public class UnidadesUI implements Serializable{
                     new FacesMessage("Asignacion exitosa")); 
             } else {
                 FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Asignacion fallida"));
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN ASIGNACION:", "El profesor no existe"));
             }
+        }
+        else
+        {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN ASIGNACION:", "El profesor ya estaba asignado"));
         }
     }
 }

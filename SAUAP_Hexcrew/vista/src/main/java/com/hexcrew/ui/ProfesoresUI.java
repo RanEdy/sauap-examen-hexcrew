@@ -96,8 +96,7 @@ public class ProfesoresUI implements Serializable {
                 || u.getEmail() == ""
                 || u.getPassword() == ""
                 || u.getRfc() == ""
-                ||
-                profesorRegistrar.getNumProfesor() == null)
+                || profesorRegistrar.getNumProfesor() == null)
         {
             FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN REGISTRO:", "Campos no validos"));
@@ -114,8 +113,6 @@ public class ProfesoresUI implements Serializable {
        
         
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro exitoso", "El profesor ha sido registrado"));
-        PrimeFaces.current().ajax().update("form:mensajes");
-        PrimeFaces.current().executeScript("PF('form:registrarDialog').hide()");
         
         
         listaProfesores = helper.obtenerLista();

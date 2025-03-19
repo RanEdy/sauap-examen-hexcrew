@@ -52,18 +52,37 @@ public class UnidadesHelper implements Serializable {
         return validacion;
     }
     
+    public boolean remover(Profesor profe, UnidadAprendizaje unidad)
+    {
+        if(profe==null || unidad==null) return false;
+        
+        System.out.println("Profesor removido");
+        profe.removeUnidadAprendizaje(unidad);
+        locator.getProfesorFacadeInstance().editarProfesor(profe);
+        return true;
+    }
+    
     public boolean asignarProfesor(Integer numProfesor, UnidadAprendizaje unidad){
         Profesor seleccionado = null;
         
+        //Buscar en todos los profesores para obtener el profesor que coincida con el numero
         List<Profesor> listaProfesores = locator.getProfesorFacadeInstance().obtenerLista();
+        
+        System.out.println("========================= Buscando Profesores: =========================");
+        System.out.println("Numero recibido: " + numProfesor);
+        
         for (Profesor actual : listaProfesores){
+            System.out.println("Num Profe: " + actual.getNumProfesor());
+            
             if(actual.getNumProfesor().equals(numProfesor)){
+                System.out.println("UnidadesHelper[62]: profesor obtenido ");
                 seleccionado = actual;
                 break;
             }
         }
         
         if(seleccionado != null){
+            System.out.println("UnidadesHelper[69]: profesor asignado ");
             seleccionado.addUnidadAprendizaje(unidad);
             locator.getProfesorFacadeInstance().editarProfesor(seleccionado);
             return true;

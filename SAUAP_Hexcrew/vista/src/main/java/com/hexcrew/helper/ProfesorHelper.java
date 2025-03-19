@@ -37,6 +37,6 @@ public class ProfesorHelper implements Serializable{
     
     public boolean registrarProfesor(Profesor p)
     {
-        return locator.getProfesorFacadeInstance().guardarProfesor(p) == null;
+        return locator.getProfesorFacadeInstance().guardarProfesor(p) != null;
     }
 }

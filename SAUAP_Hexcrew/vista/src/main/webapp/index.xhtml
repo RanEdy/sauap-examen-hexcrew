@@ -45,7 +45,7 @@
                 <div class="h-7rem w-full shadow-4 flex justify-content-end align-items-center px-4">
                     <div class="flex align-items-center justify-content-end w-full">
                         <div>
-                            <h2 class="m-0 font-bold font-type-2 text-800 text-right"> #{homeUI.usuarioActual.usuario.nombre}</h2>
+                            <h2 class="m-0 font-bold font-type-2 text-800 text-right"> #{homeUI.usuarioActual.usuario.nombre} <span class="m-6px font-type-2 text-600">(Admin)</span></h2>
                             <p class="m-0 text-sm font-type-2 text-800 text-right">#{homeUI.usuarioActual.usuario.email}</p>
                         </div>
                         <p:avatar icon="pi pi-user" styleClass="ml-3 text-white gradiente-verde" size="xlarge" shape="circle"/>
@@ -53,8 +53,8 @@
                 </div>
 
                 <!-- Panel de Contenido -->
-                <div id="contenidoDiv" class="h-auto w-full bg-gray-0">
-                    <p:outputPanel id="contenidoPanel">
+                <div id="contenidoDiv" class="h-10 w-full bg-gray-0">
+                    <p:outputPanel id="contenidoPanel" class="h-full">
                         <ui:include src="#{homeUI.contenido}"/>
                     </p:outputPanel>
                 </div>

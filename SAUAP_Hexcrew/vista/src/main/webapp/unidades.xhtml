@@ -17,19 +17,19 @@
 
 
                 <!-- =========================================================================================== -->
-                
+
                 <!--                 ======================= Dialog de Confirmacion para agregar al un Profesor a la unidad ========================= -->
-                <p:dialog widgetVar="profeAgregarU" modal="true" showEffect="fade" width="35vw" height="75vh">
-                    <p class="border-round-3xl gradiente-verde text-center font-type-1 text-5xl text-50">AGREGAR PROFESOR A UNIDAD</p>
+                <p:dialog widgetVar="profeAgregarU" modal="true" showEffect="fade" width="30vw" height="45vh">
+                    <p class="border-round-3xl gradiente-verde text-center font-type-1 text-3xl text-50 p-1rem">ASIGNAR PROFESOR</p>
                     <p:messages id="mCampos" showDetail="true" closable="true">
                     </p:messages>
 
-                    <h:panelGrid id="campos2" columns="1" cellpadding="7" class="w-full">
-
-                        <p:outputLabel>ID del Profesor</p:outputLabel>
-                        <p:inputText required="true"
-                                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                    </h:panelGrid>
+                    <p:outputLabel>Número del Profesor</p:outputLabel>
+                    <p:spinner id="spinner-num"
+                               required="true"
+                               min="0"
+                               value="#{unidadesUI.numProfesor}"
+                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
 
                     <div class="flex justify-content-center mt-8">
                         <p:commandButton value="CANCELAR" 
@@ -39,19 +39,21 @@
 
                         <p:commandButton value="ACEPTAR"
                                          styleClass="gradiente-verde border-round-3xl text-50 font-type-1 text-4xl"
-                                         actionListener ="#(unidadesUI.asignarProfesor())"
+                                         action="#{unidadesUI.asignarProfesor}"
+                                         process="@this spinner-num"
+                                         update="listaProfes mensajes"
                                          style="border: none !important;"/>
                     </div>
                 </p:dialog>
-<!--                 =================================================================== -->
+                <!--                 =================================================================== -->
 
                 <!-- ======================= Dialog de Consulta ========================= -->
                 <p:dialog id="consultaDialog" widgetVar="consultaDialog" modal="true" showEffect="fade" width="75vw" height="65vh">
                     <div style="display: flex; flex-direction: row; width: 100%; height: 100%;">
 
                         <!-- Columna Izquierda -->
-                        <div style="flex: 1; padding: 1rem; border-right: 1px solid #ccc;">
-                            <p class="border-round-3xl gradiente-verde text-center font-type-1 text-5xl text-50">UNIDAD DE APRENDIZAJE</p>
+                        <div style="flex: 1; border-right: 1px solid #ccc;" class="mx-6rem w-5 px-4rem">
+                            <p class="border-round-3xl gradiente-verde text-center font-type-1 text-3xl text-50 p-1rem">UNIDAD DE APRENDIZAJE</p>
                             <p:outputPanel layout="block" style="margin-bottom: 1rem;">
                                 <p:outputLabel 
                                     class="font-type-1 text-2xl text-18" 
@@ -99,25 +101,25 @@
                         </div>
 
                         <!-- Columna Derecha -->
-                        <div class="flex flex-column ml-4rem p-0">
-                            <p class="border-round-3xl gradiente-verde text-center font-type-1 text-5xl text-50">UNIDADES DE APRENDIZAJE</p>
+                        <div class="flex flex-column w-5 mx-6rem px-4rem">
+                            <p class="border-round-3xl gradiente-verde text-center font-type-1 text-3xl text-50">UNIDADES DE APRENDIZAJE</p>
                             <!-- Contenido -->
                             <!-- ======================= Boton de Asignar Unidad ========================= -->
                             <p:commandButton value="ASIGNAR"
-                                             styleClass="font-type-1 font-bold text-3xl rounded-button gradiente-verde"
+                                             styleClass="font-type-1 font-bold text-2xl rounded-button gradiente-verde w-4 ml-4rem"
                                              style="border: none !important;"
                                              oncomplete="PF('profeAgregarU').show()"/>
                             <!-- =================================================================== -->
                             <div class="h-10 p-4">
 
-                                <p:dataScroller value="#{unidadesUI.listaProfesores}" var="profesor" chunkSize="10" mode="inline"
+                                <p:dataScroller id="listaProfes" value="#{unidadesUI.listaProfesores}" var="profesor" chunkSize="10" mode="inline"
                                                 scrollHeight="500"
                                                 styleClass="h-8">
 
                                     <div class="profesor">
                                         <div class="profesor-list p-5 border-round-3xl shadow-4 mb-4">
                                             <div class="profesor-info">
-                                                <div class="ua-clave">
+                                                <div class="ua-numero">
                                                     <p><span class="font-type-1 text-2xl text-18">Numero Profesor: </span> <span style="white-space: pre-wrap; font-size: 20px;">#{profesor.numProfesor}</span></p></div>
                                             </div>
                                             <div class="profesor-info">
@@ -125,17 +127,24 @@
                                                     <p><span class="font-type-1 text-2xl text-18">Nombre: </span><span style="white-space: pre-wrap; font-size: 20px;">#{profesor.usuario.nombre}</span></p></div>
                                             </div>
                                             <div class="profesor-info">
-                                                <div class="ua-clase">
+                                                <div class="ua-apellido">
                                                     <p><span class="font-type-1 text-2xl text-18">Apellido: </span><span style="white-space: pre-wrap; font-size: 20px;">#{profesor.usuario.apellido}</span></p></div>
                                             </div>
-                                            <div class="profesor-info">
+                                            <div class="profesor-email">
                                                 <div class="ua-taller">
-                                                    <p><span class="font-type-1 text-2xl text-18">Correo: </span><span style="white-space: pre-wrap; font-size: 20px;">#{profesor.usuario.email}</span></p></div>
+                                                    <p><span class="font-type-1 text-2xl text-18">Email: </span><span style="white-space: pre-wrap; font-size: 20px;">#{profesor.usuario.email}</span></p></div>
                                             </div>
-                                            <div class="profesor-info">
+                                            <div class="profesor-rfc">
                                                 <div class="ua-laboratorio">
                                                     <p><span class="font-type-1 text-2xl text-18">RFC: </span><span style="white-space: pre-wrap; font-size: 20px;">#{profesor.usuario.rfc}</span></p></div>
                                             </div>
+                                            <p:commandButton value="REMOVER"
+                                             styleClass="font-type-1 text-1xl rounded-button ui-button-danger w-4 mt-3rem"
+                                             style="border: none !important;"
+                                             action="#{unidadesUI.remover(profesor)}"
+                                             process="@this mensajes"
+                                             update="listaProfes mensajes"
+                                             />
                                         </div>
                                     </div>
                                 </p:dataScroller>
@@ -211,8 +220,8 @@
                              value="#{unidadesUI.listaUnidades}"
                              scrollable="true"
                              sortMode="single"
-                             scrollHeight="400"
-                             styleClass="h-8">
+                             scrollHeight="40rem"
+                             styleClass="h-10">
                     <p:column styleClass="botones-contenedor" selectionBox="false">
                         <p:commandButton
                             icon="pi pi-bars"
