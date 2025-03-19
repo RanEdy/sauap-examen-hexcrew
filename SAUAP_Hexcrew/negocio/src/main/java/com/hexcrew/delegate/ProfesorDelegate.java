@@ -37,6 +37,11 @@ public class ProfesorDelegate implements IProfesorDelegate
 
     @Override
     public Profesor registrar(Profesor p) {
+        List<Profesor> profesores = dao.findAll();
+        for (Profesor profe : profesores)
+        {
+            if (profe.getNumProfesor() == p.getNumProfesor()) return null;
+        }
         return dao.save(p);
     }
 
