@@ -6,6 +6,7 @@ import com.hexcrew.dao.UsuarioDAO;
 import com.hexcrew.entidad.Administrador;
 import com.hexcrew.entidad.Profesor;
 import com.hexcrew.entidad.UnidadAprendizaje;
+import com.hexcrew.persistencia.ServiceLocator;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import java.util.List;
@@ -20,17 +21,12 @@ import java.util.Set;
 public class ProfesorDelegate implements IProfesorDelegate {
 
     @EJB
-    private ProfesorDAO dao;
-
-    @EJB
-    private AdministradorDAO admindao;
-
-    @EJB
-    private UsuarioDAO usuariodao;
+    ServiceLocator locator;
 
     @Override
     public List<Profesor> listar() {
-        return dao.findAll();
+        //return dao.findAll();
+        return locator.getProfesorDAOInstance().findAll();
     }
 
     @Override
@@ -39,12 +35,14 @@ public class ProfesorDelegate implements IProfesorDelegate {
         Set<UnidadAprendizaje> Asignaciones = p.getUnidades();
 
         if (Asignaciones.isEmpty()) {
-            dao.delete(p);
+            locator.getProfesorDAOInstance().delete(p);
+            //dao.delete(p);
             
-            List<Administrador> administradores = admindao.findAll();
+            List<Administrador> administradores = locator.getAdministradorDAOInstance().findAll();
             for (Administrador admin : administradores) {
                 if (!admin.getIdUsuario().equals(p.getIdUsuario())) {
-                    usuariodao.delete(p.getUsuario());
+                    locator.getUsuarioDAOInstance().delete(p.getUsuario());
+                    //usuariodao.delete(p.getUsuario());
                     break;
                 }
             }
@@ -57,23 +55,27 @@ public class ProfesorDelegate implements IProfesorDelegate {
 
     @Override
     public Profesor registrar(Profesor p) {
-        List<Profesor> profesores = dao.findAll();
+        //List<Profesor> profesores = dao.findAll();
+        List<Profesor> profesores = locator.getProfesorDAOInstance().findAll();
         for (Profesor profe : profesores) {
             if (profe.getNumProfesor().equals(p.getNumProfesor())) {
                 return null;
             }
         }
-        return dao.save(p);
+        //return dao.save(p);
+        return locator.getProfesorDAOInstance().save(p);
     }
 
     @Override
     public Profesor editar(Profesor p) {
-        return dao.update(p);
+        //return dao.update(p);
+        return locator.getProfesorDAOInstance().update(p);
     }
 
     @Override
     public Profesor buscar(Integer id) {
-        return dao.find(id);
+        //return dao.find(id);
+        return locator.getProfesorDAOInstance().find(id);
     }
 
 }
