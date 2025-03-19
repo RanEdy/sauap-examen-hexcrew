@@ -42,7 +42,9 @@ public class AltasUnidadAprendizajeHelper implements Serializable {
     }
     
     public boolean registrarUnidad(UnidadAprendizaje u){
+        System.out.println("Prueba 1.2");
         boolean validacion = locator.getUnidadAprendizajeFacadeInstance().validarClaveUnidad(u.getclaveunidadaprendizaje());
+        System.out.print(validacion);
         if (validacion)
         {
             locator.getUnidadAprendizajeFacadeInstance().setUnidadAprendizaje(u);
