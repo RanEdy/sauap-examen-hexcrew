@@ -4,6 +4,7 @@ import com.hexcrew.dao.AdministradorDAO;
 import com.hexcrew.dao.UsuarioDAO;
 import com.hexcrew.entidad.Administrador;
 import com.hexcrew.entidad.Usuario;
+import com.hexcrew.persistencia.ServiceLocator;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import java.util.List;
@@ -17,33 +18,40 @@ import java.util.List;
 public class UsuarioDelegate implements IUsuarioDelegate
 {
     @EJB
-    UsuarioDAO dao;
-    @EJB
-    AdministradorDAO daoAdmin;
+    ServiceLocator locator;
+
     
+    @Override
     public Usuario guardar(Usuario u)
     {
-        return dao.save(u);
+        //return dao.save(u);
+        return locator.getUsuarioDAOInstance().save(u);
     }
     
+    @Override
     public Usuario editar(Usuario u)
     {
-        return dao.update(u);
+        //return dao.update(u);
+        return locator.getUsuarioDAOInstance().update(u);
     }
     
+    @Override
     public List<Usuario> listar()
     {
-        return dao.findAll();
+        //return dao.findAll();
+        return locator.getUsuarioDAOInstance().findAll();
     }
 
     @Override
     public Usuario buscar(Integer id) {
-        return dao.find(id);
+        //return dao.find(id);
+        return locator.getUsuarioDAOInstance().find(id);
     }
 
     @Override
     public void eliminar(Usuario u) {
-        dao.delete(u);
+        //dao.delete(u);
+        locator.getUsuarioDAOInstance().delete(u);
     }
     
 //    @Override
