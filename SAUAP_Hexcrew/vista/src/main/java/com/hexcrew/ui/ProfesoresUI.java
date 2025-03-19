@@ -82,12 +82,12 @@ public class ProfesoresUI implements Serializable {
     {
         if (profesorRegistrar == null) {
             FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN REGISTRO:", "El profesor no cuenta con campos validos"));
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN REGISTRO:", "El profesor no fue creado"));
             return;
         }
         if (profesorRegistrar.getUsuario() == null) {
             FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN REGISTRO:", "El profesor no cuenta con campos validos"));
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN REGISTRO:", "El profesor no cuenta con un usario valido"));
             return;
         }
         Usuario u = profesorRegistrar.getUsuario();
@@ -104,11 +104,20 @@ public class ProfesoresUI implements Serializable {
             return;
         }
         
+        //El profesor no pudo registrarse por que el numero de profesor esta repetido
+        if(!helper.registrarProfesor(profesorRegistrar))
+        {
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN REGISTRO:", "El numero de profesor esta repetido"));
+            return;
+        }
+       
+        
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro exitoso", "El profesor ha sido registrado"));
         PrimeFaces.current().ajax().update("form:mensajes");
         PrimeFaces.current().executeScript("PF('form:registrarDialog').hide()");
         
-        helper.registrarProfesor(profesorRegistrar);
+        
         listaProfesores = helper.obtenerLista();
     }
     
