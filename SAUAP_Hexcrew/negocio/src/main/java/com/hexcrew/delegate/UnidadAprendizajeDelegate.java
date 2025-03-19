@@ -17,17 +17,37 @@ public class UnidadAprendizajeDelegate implements IUnidadAprendizajeDelegate{
     private UnidadAprendizajeDAO dao;
     
     @Override
+    public UnidadAprendizaje guardar(UnidadAprendizaje u) {
+        return dao.save(u);
+    }
+
+    @Override
+    public UnidadAprendizaje editar(UnidadAprendizaje u) {
+        return dao.update(u);
+    }
+
+    @Override
+    public UnidadAprendizaje buscar(Object id) {
+        return dao.find(id);
+    }
+
+    @Override
+    public void eliminar(UnidadAprendizaje u) {
+        dao.delete(u);
+    }
+
+    @Override
     public List<UnidadAprendizaje> listar() {
         return dao.findAll();
     }
-    
+
     @Override
-    public UnidadAprendizaje registrar(UnidadAprendizaje p) {
-        return dao.save(p);
-    }
-    
-    @Override
-    public UnidadAprendizaje buscar(Integer id) {
-        return dao.find(id);
+    public boolean validarClave(Integer clave) {
+        List<UnidadAprendizaje> unidades = dao.findAll();
+        for (UnidadAprendizaje unidad : unidades)
+        {
+            if (unidad.getclaveunidadaprendizaje() == clave) return false;
+        }
+        return true;
     }
 }

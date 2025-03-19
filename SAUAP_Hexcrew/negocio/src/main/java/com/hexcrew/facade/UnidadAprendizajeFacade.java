@@ -31,4 +31,14 @@ public class UnidadAprendizajeFacade implements IUnidadAprendizajeFacade{
     public UnidadAprendizaje buscarUnidadAprendizaje(Integer id) {
         return delegate.buscar(id);
     }
+    
+    @Override
+    public List<UnidadAprendizaje> obtenerListaUnidades(){
+        return delegate.listar();
+    }
+
+    @Override
+    public boolean validarClaveUnidad(Integer clave) {
+        return delegate.validarClave(clave);
+    }
 }

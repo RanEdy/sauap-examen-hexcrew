@@ -11,7 +11,8 @@ import java.util.List;
 
 @Local
 public interface IUnidadAprendizajeFacade {
-    public List<UnidadAprendizaje> obtenerLista();
-    public UnidadAprendizaje guardarUnidadAprendizaje(UnidadAprendizaje u);
-    public UnidadAprendizaje buscarUnidadAprendizaje(Integer id);
+    public UnidadAprendizaje setUnidadAprendizaje(UnidadAprendizaje u);
+    
+    public List<UnidadAprendizaje> obtenerListaUnidades();
+    public boolean validarClaveUnidad(Integer clave);
 }

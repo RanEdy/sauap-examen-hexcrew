@@ -11,7 +11,11 @@ import java.util.List;
 
 @Local
 public interface IUnidadAprendizajeDelegate {
-    public List<UnidadAprendizaje> listar();
-    public UnidadAprendizaje registrar(UnidadAprendizaje u);
-    public UnidadAprendizaje buscar(Integer id);
+    UnidadAprendizaje guardar(UnidadAprendizaje u);
+    UnidadAprendizaje editar(UnidadAprendizaje u);
+    UnidadAprendizaje buscar(Object id);
+    void eliminar(UnidadAprendizaje u);
+    List<UnidadAprendizaje> listar();
+    boolean validarClave(Integer clave);
+    
 }
