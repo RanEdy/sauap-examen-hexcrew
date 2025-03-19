@@ -1,0 +1,274 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="primefaces"
+      xmlns:f="jakarta.faces.core">
+
+    <h:outputText value="#{unidadesUI}" style="display:none;" />
+
+    <h:head>
+        <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css" />
+        <h:outputStylesheet library="css" name="general.css" />
+        <h:outputStylesheet library="css" name="home.css" />
+    </h:head>
+    <h:body>
+        <h:form id="form" class="w-full h-full">
+            <div class="card h-full w-full p-3">
+                <p:growl id="mensajes" showDetail="true"/>
+
+
+                <!-- =========================================================================================== -->
+                
+                <!--                 ======================= Dialog de Confirmacion para agregar al un Profesor a la unidad ========================= -->
+                <p:dialog widgetVar="profeAgregarU" modal="true" showEffect="fade" width="35vw" height="75vh">
+                    <p class="border-round-3xl gradiente-verde text-center font-type-1 text-5xl text-50">AGREGAR PROFESOR A UNIDAD</p>
+                    <p:messages id="mCampos" showDetail="true" closable="true">
+                    </p:messages>
+
+                    <h:panelGrid id="campos2" columns="1" cellpadding="7" class="w-full">
+
+                        <p:outputLabel>ID del Profesor</p:outputLabel>
+                        <p:inputText required="true"
+                                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
+                    </h:panelGrid>
+
+                    <div class="flex justify-content-center mt-8">
+                        <p:commandButton value="CANCELAR" 
+                                         styleClass="ui-button-danger mr-6 border-round-3xl text-50 font-type-1 text-4xl"
+                                         onclick="PF('profeAgregarU').hide()" 
+                                         type="button"/>
+
+                        <p:commandButton value="ACEPTAR"
+                                         styleClass="gradiente-verde border-round-3xl text-50 font-type-1 text-4xl"
+                                         actionListener ="#(unidadesUI.asignarProfesor())"
+                                         style="border: none !important;"/>
+                    </div>
+                </p:dialog>
+<!--                 =================================================================== -->
+
+                <!-- ======================= Dialog de Consulta ========================= -->
+                <p:dialog id="consultaDialog" widgetVar="consultaDialog" modal="true" showEffect="fade" width="75vw" height="65vh">
+                    <div style="display: flex; flex-direction: row; width: 100%; height: 100%;">
+
+                        <!-- Columna Izquierda -->
+                        <div style="flex: 1; padding: 1rem; border-right: 1px solid #ccc;">
+                            <p class="border-round-3xl gradiente-verde text-center font-type-1 text-5xl text-50">UNIDAD DE APRENDIZAJE</p>
+                            <p:outputPanel layout="block" style="margin-bottom: 1rem;">
+                                <p:outputLabel 
+                                    class="font-type-1 text-2xl text-18" 
+                                    value="Nombre: " />
+                                <h:outputText 
+                                    value="#{unidadesUI.unidadSeleccionada.nombreunidad}" 
+                                    style="white-space: pre-wrap; font-size: 20px;" />
+                            </p:outputPanel>
+
+                            <p:outputPanel layout="block" style="margin-bottom: 1rem;">
+                                <p:outputLabel 
+                                    class="font-type-1 text-2xl text-18" 
+                                    value="Clave: " />
+                                <h:outputText 
+                                    value="#{unidadesUI.unidadSeleccionada.claveunidadaprendizaje}" 
+                                    style="white-space: pre-wrap; font-size: 20px;" />
+                            </p:outputPanel>
+
+                            <p:outputPanel layout="block" style="margin-bottom: 1rem;">
+                                <p:outputLabel 
+                                    class="font-type-1 text-2xl text-18" 
+                                    value="Horas Clase: " />
+                                <h:outputText 
+                                    value="#{unidadesUI.unidadSeleccionada.horasclase}" 
+                                    style="white-space: pre-wrap; font-size: 20px;" />
+                            </p:outputPanel>
+
+                            <p:outputPanel layout="block" style="margin-bottom: 1rem;">
+                                <p:outputLabel 
+                                    class="font-type-1 text-2xl text-18" 
+                                    value="Horas Taller: " />
+                                <h:outputText 
+                                    value="#{unidadesUI.unidadSeleccionada.horastaller}" 
+                                    style="white-space: pre-wrap; font-size: 20px;" />
+                            </p:outputPanel>
+
+                            <p:outputPanel layout="block" style="margin-bottom: 1rem;">
+                                <p:outputLabel 
+                                    class="font-type-1 text-2xl text-18" 
+                                    value="Horas Laboratorio: " />
+                                <h:outputText 
+                                    value="#{unidadesUI.unidadSeleccionada.horaslab}" 
+                                    style="white-space: pre-wrap; font-size: 20px;" />
+                            </p:outputPanel>
+                        </div>
+
+                        <!-- Columna Derecha -->
+                        <div class="flex flex-column ml-4rem p-0">
+                            <p class="border-round-3xl gradiente-verde text-center font-type-1 text-5xl text-50">UNIDADES DE APRENDIZAJE</p>
+                            <!-- Contenido -->
+                            <!-- ======================= Boton de Asignar Unidad ========================= -->
+                            <p:commandButton value="ASIGNAR"
+                                             styleClass="font-type-1 font-bold text-3xl rounded-button gradiente-verde"
+                                             style="border: none !important;"
+                                             oncomplete="PF('profeAgregarU').show()"/>
+                            <!-- =================================================================== -->
+                            <div class="h-10 p-4">
+
+                                <p:dataScroller value="#{unidadesUI.listaProfesores}" var="profesor" chunkSize="10" mode="inline"
+                                                scrollHeight="500"
+                                                styleClass="h-8">
+
+                                    <div class="profesor">
+                                        <div class="profesor-list p-5 border-round-3xl shadow-4 mb-4">
+                                            <div class="profesor-info">
+                                                <div class="ua-clave">
+                                                    <p><span class="font-type-1 text-2xl text-18">Numero Profesor: </span> <span style="white-space: pre-wrap; font-size: 20px;">#{profesor.numProfesor}</span></p></div>
+                                            </div>
+                                            <div class="profesor-info">
+                                                <div class="ua-nombre">
+                                                    <p><span class="font-type-1 text-2xl text-18">Nombre: </span><span style="white-space: pre-wrap; font-size: 20px;">#{profesor.usuario.nombre}</span></p></div>
+                                            </div>
+                                            <div class="profesor-info">
+                                                <div class="ua-clase">
+                                                    <p><span class="font-type-1 text-2xl text-18">Apellido: </span><span style="white-space: pre-wrap; font-size: 20px;">#{profesor.usuario.apellido}</span></p></div>
+                                            </div>
+                                            <div class="profesor-info">
+                                                <div class="ua-taller">
+                                                    <p><span class="font-type-1 text-2xl text-18">Correo: </span><span style="white-space: pre-wrap; font-size: 20px;">#{profesor.usuario.email}</span></p></div>
+                                            </div>
+                                            <div class="profesor-info">
+                                                <div class="ua-laboratorio">
+                                                    <p><span class="font-type-1 text-2xl text-18">RFC: </span><span style="white-space: pre-wrap; font-size: 20px;">#{profesor.usuario.rfc}</span></p></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </p:dataScroller>
+                            </div>
+                        </div>
+                    </div>
+                </p:dialog>
+
+                <!-- =================================================================== -->
+
+                <!-- ======================= Dialog de Registrar ========================= -->
+                <p:dialog widgetVar="registrarDialog" modal="true" showEffect="fade" width="50vw" height="75vh">
+
+                    <p class="border-round-3xl gradiente-verde text-center font-type-1 text-5xl text-50">REGISTRAR UNIDAD DE APRENDIZAJE</p>
+
+
+                    <p:messages id="msgCampos" showDetail="true" closable="true">
+                    </p:messages>
+
+                    <h:panelGrid id="campos" columns="1" cellpadding="7" class="w-full">
+
+                        <p:outputLabel for="nombre">Nombre</p:outputLabel>
+                        <p:inputText id="nombre" type="text" value="#{unidadesUI.unidadRegistrar.nombreunidad}" required="true"
+                                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
+
+                        <p:outputLabel for="clave">Clave</p:outputLabel>
+                        <p:spinner id="clave" min="0" value="#{unidadesUI.unidadRegistrar.claveunidadaprendizaje}" required="true"/>
+
+                        <p:outputLabel for="horaC">Horas Clase</p:outputLabel>
+                        <p:spinner id="horaC" min="0" max="23" value="#{unidadesUI.unidadRegistrar.horasclase}" required="true"></p:spinner>
+
+                        <p:outputLabel for="horaT">Horas Taller</p:outputLabel>
+                        <p:spinner id="horaT" min="0" max="23" value="#{unidadesUI.unidadRegistrar.horastaller}" required="true"></p:spinner>
+
+                        <p:outputLabel for="horaL">Horas Lab</p:outputLabel>
+                        <p:spinner id="horaL" min="0" max="23" value="#{unidadesUI.unidadRegistrar.horaslab}" required="true"></p:spinner>
+                    </h:panelGrid>
+
+                    <div class="flex justify-content-center mt-8">
+                        <p:commandButton value="CANCELAR" 
+                                         styleClass="ui-button-danger mr-6 border-round-3xl text-50 font-type-1 text-4xl"
+                                         onclick="PF('registrarDialog').hide()" 
+                                         type="button"/>
+
+                        <p:commandButton value="ACEPTAR"
+                                         styleClass="gradiente-verde border-round-3xl text-50 font-type-1 text-4xl"
+                                         style="border: none !important;"
+                                         actionListener="#{unidadesUI.registrarUnidad()}"
+                                         update="form:msgCampos form:tablaUnidadesA"/>
+                    </div>
+                </p:dialog>
+                <!-- =================================================================== -->
+
+
+
+
+
+
+                <!-- ======================= Boton de Registrar ========================= -->
+                <p:commandButton value="REGISTRAR"
+                                 styleClass="m-4  font-type-1 font-bold text-3xl w-2 rounded-button gradiente-verde"
+                                 style="border: none !important;"
+                                 oncomplete="PF('registrarDialog').show()"/>
+                <!-- =================================================================== -->
+
+
+
+
+
+
+                <!-- ======================= Tabla de Unidades ========================= -->
+                <p:dataTable id="tablaUnidadesA" var="unidad" 
+                             value="#{unidadesUI.listaUnidades}"
+                             scrollable="true"
+                             sortMode="single"
+                             scrollHeight="400"
+                             styleClass="h-8">
+                    <p:column styleClass="botones-contenedor" selectionBox="false">
+                        <p:commandButton
+                            icon="pi pi-bars"
+                            styleClass="gradiente-verde mx-2 w-3 h-3"
+                            style="border: none !important;"
+                            process="@this"
+                            action="#{unidadesUI.seleccionarUnidad(unidad)}"
+                            update=":form:consultaDialog"
+                            oncomplete="PF('consultaDialog').show()"/>
+                    </p:column>
+
+                    <p:column 
+                        styleClass="font-type-2 text-2xl"
+                        style="border: none !important;"
+                        headerText="Clave"
+                        selectionBox="false">
+                        <h:outputText value="#{unidad.claveunidadaprendizaje}"/>
+
+                    </p:column>
+
+                    <p:column 
+                        styleClass="font-type-2 text-2xl"
+                        style="border: none !important;"
+                        headerText="Nombre"
+                        selectionBox="false">
+                        <h:outputText value="#{unidad.nombreunidad}"/>
+                    </p:column>
+
+                    <p:column
+                        styleClass="font-type-2 text-2xl"
+                        style="border: none !important;"
+                        headerText="Horas Clase"
+                        selectionBox="false">
+                        <h:outputText value="#{unidad.horasclase}"/>
+                    </p:column>
+
+                    <p:column
+                        styleClass="font-type-2 text-2xl"
+                        style="border: none !important;"
+                        headerText="Horas Taller"
+                        selectionBox="false">
+                        <h:outputText value="#{unidad.horastaller}"/>
+                    </p:column>
+                    <p:column
+                        styleClass="font-type-2 text-2xl"
+                        style="border: none !important;"
+                        headerText="Horas Laboratorio"
+                        selectionBox="false">
+                        <h:outputText value="#{unidad.horaslab}"/>
+                    </p:column>
+                </p:dataTable>
+                <!-- =================================================================== -->
+
+
+
+            </div>
+        </h:form>
+    </h:body>
+</html>
