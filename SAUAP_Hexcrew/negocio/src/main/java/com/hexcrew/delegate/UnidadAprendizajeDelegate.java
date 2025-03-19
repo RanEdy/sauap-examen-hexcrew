@@ -46,7 +46,10 @@ public class UnidadAprendizajeDelegate implements IUnidadAprendizajeDelegate{
         List<UnidadAprendizaje> unidades = dao.findAll();
         for (UnidadAprendizaje unidad : unidades)
         {
-            if (unidad.getclaveunidadaprendizaje() == clave) return false;
+            if (unidad.getclaveunidadaprendizaje().equals(clave)) 
+            {
+                return false;
+            }
         }
         return true;
     }

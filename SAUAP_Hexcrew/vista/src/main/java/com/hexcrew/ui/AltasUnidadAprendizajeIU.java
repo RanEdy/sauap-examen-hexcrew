@@ -3,13 +3,11 @@ package com.hexcrew.ui;
 import com.hexcrew.entidad.UnidadAprendizaje;
 import com.hexcrew.helper.AltasUnidadAprendizajeHelper;
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.List;
@@ -75,15 +73,26 @@ public class AltasUnidadAprendizajeIU implements Serializable{
     
     public void registrarUnidad()
     {
-        if (helper.registrarUnidad(unidadRegistrar))
+        System.out.println("UnidadAprendizaje: ");
+        System.out.println("Nombre: " + unidadRegistrar.getnombreunidad());
+        System.out.println("Clave: " + unidadRegistrar.getclaveunidadaprendizaje());
+        System.out.println("Horas Clase: " + unidadRegistrar.gethorasclase());
+        System.out.println("Horas Taller: " + unidadRegistrar.gethorastaller());
+        System.out.println("Horas Laboratorio: " + unidadRegistrar.gethoraslab());
+        System.out.println("Prueba 1.1");
+        boolean valor = helper.registrarUnidad(unidadRegistrar);
+        System.out.println(valor);
+        if (valor)
         {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Unidad de Aprendizaje registrada exitosamente"));
+            listaUnidades = helper.obtenerListaUnidades();
         }
         else
         {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Unidad de Aprendizaje no se pudo registrar"));
         }
+        
     }
 }

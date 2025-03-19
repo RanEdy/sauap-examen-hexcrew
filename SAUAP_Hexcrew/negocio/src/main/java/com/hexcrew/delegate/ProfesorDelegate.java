@@ -40,7 +40,7 @@ public class ProfesorDelegate implements IProfesorDelegate
         List<Profesor> profesores = dao.findAll();
         for (Profesor profe : profesores)
         {
-            if (profe.getNumProfesor() == p.getNumProfesor()) return null;
+            if (profe.getNumProfesor().equals(p.getNumProfesor())) return null;
         }
         return dao.save(p);
     }
