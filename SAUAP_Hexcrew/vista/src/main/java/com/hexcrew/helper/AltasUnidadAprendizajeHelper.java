@@ -40,4 +40,13 @@ public class AltasUnidadAprendizajeHelper implements Serializable {
     {
         return locator.getUnidadAprendizajeFacadeInstance().obtenerListaUnidades();
     }
+    
+    public boolean registrarUnidad(UnidadAprendizaje u){
+        boolean validacion = locator.getUnidadAprendizajeFacadeInstance().validarClaveUnidad(u.getclaveunidadaprendizaje());
+        if (validacion)
+        {
+            locator.getUnidadAprendizajeFacadeInstance().setUnidadAprendizaje(u);
+        }
+        return validacion;
+    }
 }

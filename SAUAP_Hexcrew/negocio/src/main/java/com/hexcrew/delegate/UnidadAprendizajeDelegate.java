@@ -40,4 +40,14 @@ public class UnidadAprendizajeDelegate implements IUnidadAprendizajeDelegate{
     public List<UnidadAprendizaje> listar() {
         return dao.findAll();
     }
+
+    @Override
+    public boolean validarClave(Integer clave) {
+        List<UnidadAprendizaje> unidades = dao.findAll();
+        for (UnidadAprendizaje unidad : unidades)
+        {
+            if (unidad.getclaveunidadaprendizaje() == clave) return false;
+        }
+        return true;
+    }
 }

@@ -16,5 +16,6 @@ public interface IUnidadAprendizajeDelegate {
     UnidadAprendizaje buscar(Object id);
     void eliminar(UnidadAprendizaje u);
     List<UnidadAprendizaje> listar();
+    boolean validarClave(Integer clave);
     
 }
