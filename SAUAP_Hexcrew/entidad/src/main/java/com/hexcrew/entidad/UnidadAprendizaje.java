@@ -31,7 +31,6 @@ import lombok.NoArgsConstructor;
 
 public class UnidadAprendizaje implements Serializable{
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="claveunidadaprendizaje")
     Integer claveunidadaprendizaje;
     public Integer getclaveunidadaprendizaje() { return claveunidadaprendizaje; }
