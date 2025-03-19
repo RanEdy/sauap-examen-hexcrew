@@ -11,9 +11,7 @@ import java.util.List;
 
 @Local
 public interface IUnidadAprendizajeDelegate {
-    UnidadAprendizaje guardar(UnidadAprendizaje u);
-    UnidadAprendizaje editar(UnidadAprendizaje u);
-    UnidadAprendizaje buscar(Object id);
-    void eliminar(UnidadAprendizaje u);
-    List<UnidadAprendizaje> listar();
+    public List<UnidadAprendizaje> listar();
+    public UnidadAprendizaje registrar(UnidadAprendizaje u);
+    public UnidadAprendizaje buscar(Integer id);
 }

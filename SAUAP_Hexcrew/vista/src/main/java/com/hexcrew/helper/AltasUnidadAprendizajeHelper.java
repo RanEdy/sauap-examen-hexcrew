@@ -4,13 +4,11 @@ import com.hexcrew.entidad.UnidadAprendizaje;
 import com.hexcrew.negocio.ServiceFacadeLocator;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.faces.application.FacesMessage;
-import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
-import org.primefaces.PrimeFaces;
+import java.util.List;
 
 /**
  * 
@@ -24,14 +22,14 @@ public class AltasUnidadAprendizajeHelper implements Serializable{
     @EJB
     ServiceFacadeLocator locator;
     
-    public AltasUnidadAprendizajeHelper()
+    public List<UnidadAprendizaje> obtenerLista()
     {
-        System.out.println("AltasUnidadAprendizajeUI construido");
+        return locator.getUnidadAprendizajeFacadeInstance().obtenerLista();
     }
     
-    public UnidadAprendizaje guardar(UnidadAprendizaje u)
+    public boolean registrarUnidadAprendizaje(UnidadAprendizaje u)
     {
-        UnidadAprendizaje unidadAprendizaje = locator.getUnidadAprendizajeFacadeInstance().setUnidadAprendizaje(u);
-        return unidadAprendizaje;
+        locator.getUnidadAprendizajeFacadeInstance().guardarUnidadAprendizaje(u);
+        return true;
     }
 }

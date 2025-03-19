@@ -11,6 +11,8 @@ import jakarta.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
 import lombok.NoArgsConstructor;
+import java.util.List;
+import org.primefaces.PrimeFaces;
 
 /**
  * 
@@ -26,6 +28,31 @@ public class AltasUnidadAprendizajeIU implements Serializable{
     private Integer horasClase;
     private Integer horasTaller;
     private Integer horasLab;
+    
+    //Campos de Registro
+    private UnidadAprendizaje UnidadAprendizajeRegistrar;
+    public UnidadAprendizaje getUnidadAprendizajeRegistrar() { return UnidadAprendizajeRegistrar; }
+    
+    
+    private List<UnidadAprendizaje> listaUnidadAprendizaje;
+
+    public List<UnidadAprendizaje> getListaUnidadAprendizaje() {
+        return listaUnidadAprendizaje;
+    }
+
+    public void setListaUnidadAprendizaje(List<UnidadAprendizaje> lista) {
+        listaUnidadAprendizaje = lista;
+    }
+
+    private UnidadAprendizaje UnidadAprendizajeSeleccionado;
+
+    public UnidadAprendizaje getUnidadAprendizajeSeleccionado() {
+        return UnidadAprendizajeSeleccionado;
+    }
+
+    public void setUnidadAprendizajeSeleccionado(UnidadAprendizaje u) {
+        UnidadAprendizajeSeleccionado = u;
+    }
     
     @Inject
     private AltasUnidadAprendizajeHelper helper;
@@ -64,20 +91,45 @@ public class AltasUnidadAprendizajeIU implements Serializable{
         this.horasLab = horasLab;
     }
     
-    public void guardar(){
-        System.out.println("Unidades: Metodo Guardar llamado");
-        UnidadAprendizaje unidad = new UnidadAprendizaje();
-       
-        unidad.setnombreunidad(nombre);
-        unidad.sethorasclase(horasClase);
-        unidad.sethorastaller(horasTaller);
-        unidad.sethoraslab(horasLab);
-
-        try {
-            helper.guardar(unidad);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Unidad de Aprendizaje guardada exitosamente"));
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al guardar la Unidad de Aprendizaje", e.getMessage()));
+    public void registrarUnidadAprendizaje()
+    {
+        if (UnidadAprendizajeRegistrar == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN REGISTRO:", "La Unidad de Aprendizaje no cuenta con campos validos"));
+            return;
         }
+        if (UnidadAprendizajeRegistrar.getUnidadAprendizaje) == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN REGISTRO:", "La Unidad de Aprendizaje no cuenta con campos validos"));
+            return;
+        }
+        Usuario u = profesorRegistrar.getUsuario();
+        if (u.getNombre() == ""
+                || u.getApellido() == ""
+                || u.getEmail() == ""
+                || u.getPassword() == ""
+                || u.getRfc() == ""
+                ||
+                UnidadAprendizajeRegistrar.getNumUnidadAprendizaje() == null)
+        {
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN REGISTRO:", "Campos no validos"));
+            return;
+        }
+        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro exitoso", "El profesor ha sido registrado"));
+        PrimeFaces.current().ajax().update("form:mensajes");
+        PrimeFaces.current().executeScript("PF('form:registrarDialog').hide()");
+        
+        helper.registrarUnidadAprendizaje(UnidadAprendizajeRegistrar);
+        listaUnidadAprendizaje = helper.obtenerLista();
+    }
+    
+    public void reset() {
+        System.out.println("Unidades: Método Reset llamado");
+        this.nombre = null;
+        this.horasClase = null;
+        this.horasTaller = null;
+        this.horasLab = null;
     }
 }
