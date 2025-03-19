@@ -44,8 +44,8 @@
                     <div style="display: flex; flex-direction: row; width: 100%; height: 100%;">
 
                         <!-- Columna Izquierda -->
-                        <div style="flex: 1; padding: 1rem; border-right: 1px solid #ccc;">
-                            <p class="border-round-3xl gradiente-verde text-center font-type-1 text-5xl text-50">PROFESOR</p>
+                        <div style="flex: 1; border-right: 1px solid #ccc;" class="px-4rem w-6">
+                            <p class="border-round-3xl gradiente-verde text-center font-type-1 text-3xl text-50 px-2rem">PROFESOR</p>
                             <p:outputPanel layout="block" style="margin-bottom: 1rem;">
                                 <p:outputLabel 
                                     class="font-type-1 text-2xl text-18" 
@@ -93,8 +93,8 @@
                         </div>
 
                         <!-- Columna Derecha -->
-                        <div class="flex flex-column ml-4rem p-0">
-                            <p class="border-round-3xl gradiente-verde text-center font-type-1 text-5xl text-50">UNIDADES DE APRENDIZAJE</p>
+                        <div class="flex flex-column ml-4rem px-4rem w-6">
+                            <p class="border-round-3xl gradiente-verde text-center font-type-1 text-3xl text-50">UNIDADES DE APRENDIZAJE</p>
                             <!-- Contenido -->
                             <div class="h-10 p-4">
                                 
@@ -136,7 +136,7 @@
 
 
                 <!-- ======================= Dialog de Registrar ========================= -->
-                <p:dialog widgetVar="registrarDialog" modal="true" showEffect="fade" width="50vw" height="75vh">
+                <p:dialog id="registrarDialog" widgetVar="registrarDialog" modal="true" showEffect="fade" width="50vw" height="75vh">
 
                     <p class="border-round-3xl gradiente-verde text-center font-type-1 text-5xl text-50">REGISTRAR PROFESOR</p>
 
@@ -179,9 +179,9 @@
                         <p:commandButton value="ACEPTAR"
                                          styleClass="gradiente-verde border-round-3xl text-50 font-type-1 text-4xl"
                                          style="border: none !important;"
-                                         process="@this"
+                                         process="@this registrarDialog"
                                          actionListener="#{profesoresUI.registrarProfesor}"
-                                         update="msgCampos form:tablaProfesores"/>
+                                         update="msgCampos form:tablaProfesores form:mensajes"/>
                     </div>
                 </p:dialog>
                 <!-- =================================================================== -->
@@ -208,8 +208,8 @@
                              value="#{profesoresUI.listaProfesores}"
                              scrollable="true"
                              sortMode="single"
-                             scrollHeight="400"
-                             styleClass="h-8">
+                             scrollHeight="40rem"
+                             styleClass="h-10">
                     <p:column styleClass="botones-contenedor" selectionBox="false">
 
 
