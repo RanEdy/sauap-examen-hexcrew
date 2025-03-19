@@ -25,16 +25,16 @@ import lombok.NoArgsConstructor;
 @ViewScoped
 public class AltasUnidadAprendizajeIU implements Serializable{
     
-    private String nombre;
-    private Integer horasClase;
-    private Integer horasTaller;
-    private Integer horasLab;
-    
     private List<UnidadAprendizaje> listaUnidades;
     public List<UnidadAprendizaje> getListaUnidades() {return listaUnidades; }
     public void setListaUnidades(List<UnidadAprendizaje> u) { listaUnidades = u; }
     
     private UnidadAprendizaje unidadSeleccionada;
+    private UnidadAprendizaje unidadRegistrar;
+    
+    public UnidadAprendizaje getUnidadRegistrar(){return unidadRegistrar;}
+    public void setUnidadRegistrar(UnidadAprendizaje unidadRegistrar ){this.unidadRegistrar = unidadRegistrar;}
+    
     
     public UnidadAprendizaje getUnidadSeleccionada(){
         return unidadSeleccionada;
@@ -51,6 +51,8 @@ public class AltasUnidadAprendizajeIU implements Serializable{
     public void init()
     {
         System.out.println("Unidades Bean UI creado!");
+        unidadSeleccionada = new UnidadAprendizaje();
+        unidadRegistrar = new UnidadAprendizaje();
         
         if (listaUnidades == null) {
             listaUnidades = helper.obtenerListaUnidades();
@@ -63,55 +65,25 @@ public class AltasUnidadAprendizajeIU implements Serializable{
         System.out.println("profesoresUI Bean Creado!");
     }
     
-    public String getNombre(){
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    
-    public Integer getHorasClase(){
-        return horasClase;
-    }
-    public void setHorasClase(Integer horasClase) {
-        this.horasClase = horasClase;
-    }
-    
-    public Integer getHorasTaller(){
-        return horasTaller;
-    }
-    public void setHorasTaller(Integer horasTaller) {
-        this.horasTaller = horasTaller;
-    }
-    
-    public Integer getHorasLab(){
-        return horasLab;
-    }
-    public void setHorasLab(Integer horasLab) {
-        this.horasLab = horasLab;
-    }
-    
-    public void guardar(){
-        System.out.println("Unidades: Metodo Guardar llamado");
-        UnidadAprendizaje unidad = new UnidadAprendizaje();
-       
-        unidad.setnombreunidad(nombre);
-        unidad.sethorasclase(horasClase);
-        unidad.sethorastaller(horasTaller);
-        unidad.sethoraslab(horasLab);
-
-        try {
-            helper.guardar(unidad);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Unidad de Aprendizaje guardada exitosamente"));
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al guardar la Unidad de Aprendizaje", e.getMessage()));
-        }
-    }
     
     public void seleccionarUnidad(UnidadAprendizaje unidad) {
         this.unidadSeleccionada = unidad;
         // Para eliminar o para consultar
         System.out.println("Profesor seleccionado: " 
                 + (unidad != null ? unidad.getnombreunidad(): "NULL"));
+    }
+    
+    public void registrarUnidad()
+    {
+        if (helper.registrarUnidad(unidadRegistrar))
+        {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Unidad de Aprendizaje registrada exitosamente"));
+        }
+        else
+        {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Unidad de Aprendizaje no se pudo registrar"));
+        }
     }
 }

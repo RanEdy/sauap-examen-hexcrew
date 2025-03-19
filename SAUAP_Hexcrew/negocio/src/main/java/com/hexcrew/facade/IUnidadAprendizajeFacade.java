@@ -14,4 +14,5 @@ public interface IUnidadAprendizajeFacade {
     public UnidadAprendizaje setUnidadAprendizaje(UnidadAprendizaje u);
     
     public List<UnidadAprendizaje> obtenerListaUnidades();
+    public boolean validarClaveUnidad(Integer clave);
 }

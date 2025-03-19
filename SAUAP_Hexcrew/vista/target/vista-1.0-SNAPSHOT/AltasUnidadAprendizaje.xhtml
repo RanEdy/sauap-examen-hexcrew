@@ -16,27 +16,6 @@
                 <p:growl id="mensajes" showDetail="true"/>
 
 
-
-
-                <!-- ======================= Dialog de Confirmacion para eliminacion ========================= -->
-                <p:dialog header="Confirmar eliminación" widgetVar="customDialog" modal="true" showEffect="fade" hideEffect="fade" width="350">
-                    <p class="mb-4">¿Está seguro que desea eliminar este profesor?</p>
-
-                    <div class="flex justify-content-end">
-                        <p:commandButton value="Cancelar" 
-                                         styleClass="ui-button-secondary mr-2" 
-                                         onclick="PF('customDialog').hide()" 
-                                         type="button"/>
-
-                        <p:commandButton value="Eliminar"
-                                         styleClass="ui-button-danger"
-                                         action="#{profesoresUI.eliminarProfesor()}"
-                                         process="@this"
-                                         oncomplete="PF('customDialog').hide()"
-                                         update="form:mensajes form:tablaUnidadesA"/>
-
-                    </div>
-                </p:dialog>
                 <!-- =========================================================================================== -->
 
                 <!-- ======================= Dialog de Consulta ========================= -->
@@ -45,49 +24,49 @@
 
                         <!-- Columna Izquierda -->
                         <div style="flex: 1; padding: 1rem; border-right: 1px solid #ccc;">
-                            <p class="border-round-3xl gradiente-verde text-center font-type-1 text-5xl text-50">PROFESOR</p>
+                            <p class="border-round-3xl gradiente-verde text-center font-type-1 text-5xl text-50">UNIDAD DE APRENDIZAJE</p>
                             <p:outputPanel layout="block" style="margin-bottom: 1rem;">
                                 <p:outputLabel 
                                     class="font-type-1 text-2xl text-18" 
                                     value="Nombre: " />
                                 <h:outputText 
-                                    value="#{profesoresUI.profesorSeleccionado.usuario.nombre}" 
+                                    value="#{unidadesUI.unidadSeleccionada.nombreunidad}" 
                                     style="white-space: pre-wrap; font-size: 20px;" />
                             </p:outputPanel>
 
                             <p:outputPanel layout="block" style="margin-bottom: 1rem;">
                                 <p:outputLabel 
                                     class="font-type-1 text-2xl text-18" 
-                                    value="Apellido: " />
+                                    value="Clave: " />
                                 <h:outputText 
-                                    value="#{profesoresUI.profesorSeleccionado.usuario.apellido}" 
+                                    value="#{unidadesUI.unidadSeleccionada.claveunidadaprendizaje}" 
                                     style="white-space: pre-wrap; font-size: 20px;" />
                             </p:outputPanel>
 
                             <p:outputPanel layout="block" style="margin-bottom: 1rem;">
                                 <p:outputLabel 
                                     class="font-type-1 text-2xl text-18" 
-                                    value="Número: " />
+                                    value="Horas Clase: " />
                                 <h:outputText 
-                                    value="#{profesoresUI.profesorSeleccionado.numProfesor}" 
+                                    value="#{unidadesUI.unidadSeleccionada.horasclase}" 
                                     style="white-space: pre-wrap; font-size: 20px;" />
                             </p:outputPanel>
 
                             <p:outputPanel layout="block" style="margin-bottom: 1rem;">
                                 <p:outputLabel 
                                     class="font-type-1 text-2xl text-18" 
-                                    value="RFC: " />
+                                    value="Horas Taller: " />
                                 <h:outputText 
-                                    value="#{profesoresUI.profesorSeleccionado.usuario.rfc}" 
+                                    value="#{unidadesUI.unidadSeleccionada.horastaller}" 
                                     style="white-space: pre-wrap; font-size: 20px;" />
                             </p:outputPanel>
 
                             <p:outputPanel layout="block" style="margin-bottom: 1rem;">
                                 <p:outputLabel 
                                     class="font-type-1 text-2xl text-18" 
-                                    value="Correo: " />
+                                    value="Horas Laboratorio: " />
                                 <h:outputText 
-                                    value="#{profesoresUI.profesorSeleccionado.usuario.email}" 
+                                    value="#{unidadesUI.unidadSeleccionada.horaslab}" 
                                     style="white-space: pre-wrap; font-size: 20px;" />
                             </p:outputPanel>
                         </div>
@@ -138,7 +117,7 @@
                 <!-- ======================= Dialog de Registrar ========================= -->
                 <p:dialog widgetVar="registrarDialog" modal="true" showEffect="fade" width="50vw" height="75vh">
 
-                    <p class="border-round-3xl gradiente-verde text-center font-type-1 text-5xl text-50">REGISTRAR PROFESOR</p>
+                    <p class="border-round-3xl gradiente-verde text-center font-type-1 text-5xl text-50">REGISTRAR UNIDAD DE APRENDIZAJE</p>
 
 
                     <p:messages id="msgCampos" showDetail="true" closable="true">
@@ -147,26 +126,23 @@
                     <h:panelGrid id="campos" columns="1" cellpadding="7" class="w-full">
 
                         <p:outputLabel for="nombre">Nombre</p:outputLabel>
-                        <p:inputText id="nombre" type="text" value="#{profesoresUI.profesorRegistrar.usuario.nombre}" required="true"
+                        <p:inputText id="nombre" type="text" value="#{unidadesUI.unidadRegistrar.nombreunidad}" required="true"
                                      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
 
-                        <p:outputLabel for="apellido">Apellido</p:outputLabel>
-                        <p:inputText id="apellido" type="text" value="#{profesoresUI.profesorRegistrar.usuario.apellido}" required="true"
+                        <p:outputLabel for="clave">Clave</p:outputLabel>
+                        <p:inputText id="clave" type="text" value="#{unidadesUI.unidadRegistrar.claveunidadaprendizaje}" required="true"
                                      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
 
-                        <p:outputLabel for="email">Email</p:outputLabel>
-                        <p:inputText id="email" type="text" value="#{profesoresUI.profesorRegistrar.usuario.email}" required="true"
+                        <p:outputLabel for="horasC">Horas Clase</p:outputLabel>
+                        <p:inputText id="horasC" type="text" value="#{unidadesUI.unidadRegistrar.horasclase}" required="true"
                                      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
 
-                        <p:outputLabel for="num">Numero de Profesor</p:outputLabel>
-                        <p:inputText id="num" type="text" value="#{profesoresUI.profesorRegistrar.numProfesor}" required="true"
+                        <p:outputLabel for="horasT">Horas Taller</p:outputLabel>
+                        <p:inputText id="horasT" type="text" value="#{unidadesUI.unidadRegistrar.horastaller}" required="true"
                                      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
 
-                        <p:outputLabel for="rfc">RFC</p:outputLabel>
-                        <p:inputText id="rfc" type="text" value="#{profesoresUI.profesorRegistrar.usuario.rfc}" required="true"
-                                     class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
-                        <p:outputLabel for="password">Password</p:outputLabel>
-                        <p:inputText id="password" type="text" value="#{profesoresUI.profesorRegistrar.usuario.password}" required="true"
+                        <p:outputLabel for="horasL">Horas Lab</p:outputLabel>
+                        <p:inputText id="horasL" type="text" value="#{unidadesUI.unidadRegistrar.horaslab}" required="true"
                                      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
                     </h:panelGrid>
 
@@ -180,8 +156,8 @@
                                          styleClass="gradiente-verde border-round-3xl text-50 font-type-1 text-4xl"
                                          style="border: none !important;"
                                          process="@this"
-                                         actionListener="#{profesoresUI.registrarProfesor}"
-                                         update="msgCampos form:tablaProfesores"/>
+                                         actionListener="#{unidadesUI.registrarUnidad}"
+                                         update="msgCampos form:tablaUnidadesA"/>
                     </div>
                 </p:dialog>
                 <!-- =================================================================== -->
@@ -203,7 +179,7 @@
 
 
 
-                <!-- ======================= Tabla de Profesores ========================= -->
+                <!-- ======================= Tabla de Unidades ========================= -->
                 <p:dataTable id="tablaUnidadesA" var="unidad" 
                              value="#{unidadesUI.listaUnidades}"
                              scrollable="true"
