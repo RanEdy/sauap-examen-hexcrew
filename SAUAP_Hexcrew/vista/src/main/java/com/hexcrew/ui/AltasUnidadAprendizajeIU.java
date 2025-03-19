@@ -58,8 +58,13 @@ public class AltasUnidadAprendizajeIU implements Serializable{
     private AltasUnidadAprendizajeHelper helper;
 
     @PostConstruct
-    public void init()
-    {
+    public void init(){
+        UnidadAprendizajeRegistrar = new UnidadAprendizaje();
+
+        if (listaUnidadAprendizaje == null) {
+            listaUnidadAprendizaje = helper.obtenerLista();
+        }
+
         System.out.println("Unidades Bean UI creado!");
     }
     
@@ -91,38 +96,42 @@ public class AltasUnidadAprendizajeIU implements Serializable{
         this.horasLab = horasLab;
     }
     
-    public void registrarUnidadAprendizaje()
-    {
+    public void registrarUnidadAprendizaje(){
+        // Crear una nueva instancia si es null
         if (UnidadAprendizajeRegistrar == null) {
+            UnidadAprendizajeRegistrar = new UnidadAprendizaje();
+        }
+
+        // Establecer los valores desde los campos de la UI
+        UnidadAprendizajeRegistrar.setnombreunidad(nombre);
+        UnidadAprendizajeRegistrar.sethorasclase(horasClase);
+        UnidadAprendizajeRegistrar.sethorastaller(horasTaller);
+        UnidadAprendizajeRegistrar.sethoraslab(horasLab);
+
+        // Validar los campos
+        if (nombre == null || nombre.trim().isEmpty() ||
+            horasClase == null || horasTaller == null || horasLab == null) {
             FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN REGISTRO:", "La Unidad de Aprendizaje no cuenta con campos validos"));
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN REGISTRO:", "La Unidad de Aprendizaje no cuenta con campos válidos"));
             return;
         }
-        if (UnidadAprendizajeRegistrar.getUnidadAprendizaje) == null) {
-            FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN REGISTRO:", "La Unidad de Aprendizaje no cuenta con campos validos"));
-            return;
-        }
-        Usuario u = profesorRegistrar.getUsuario();
-        if (u.getNombre() == ""
-                || u.getApellido() == ""
-                || u.getEmail() == ""
-                || u.getPassword() == ""
-                || u.getRfc() == ""
-                ||
-                UnidadAprendizajeRegistrar.getNumUnidadAprendizaje() == null)
-        {
-            FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR EN REGISTRO:", "Campos no validos"));
-            return;
-        }
-        
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro exitoso", "El profesor ha sido registrado"));
+
+        // Registrar la unidad de aprendizaje
+        helper.registrarUnidadAprendizaje(UnidadAprendizajeRegistrar);
+
+        // Actualizar la lista de unidades de aprendizaje
+        listaUnidadAprendizaje = helper.obtenerLista();
+
+        // Mostrar mensaje de éxito
+        FacesContext.getCurrentInstance().addMessage(null, 
+            new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro exitoso", "La Unidad de Aprendizaje ha sido registrada"));
+
+        // Actualizar la UI
         PrimeFaces.current().ajax().update("form:mensajes");
         PrimeFaces.current().executeScript("PF('form:registrarDialog').hide()");
-        
-        helper.registrarUnidadAprendizaje(UnidadAprendizajeRegistrar);
-        listaUnidadAprendizaje = helper.obtenerLista();
+
+        // Resetear los campos después de registrar
+        reset();
     }
     
     public void reset() {
