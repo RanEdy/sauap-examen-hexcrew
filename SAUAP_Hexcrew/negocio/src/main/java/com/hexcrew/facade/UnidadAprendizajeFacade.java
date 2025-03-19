@@ -18,18 +18,9 @@ public class UnidadAprendizajeFacade implements IUnidadAprendizajeFacade{
     private IUnidadAprendizajeDelegate delegate;
     
     @Override
-    public List<UnidadAprendizaje> obtenerLista(){
-        return delegate.listar();
-    }
-    
-    @Override
-    public UnidadAprendizaje guardarUnidadAprendizaje(UnidadAprendizaje u) {
-        return delegate.registrar(u);
-    }
-    
-    @Override
-    public UnidadAprendizaje buscarUnidadAprendizaje(Integer id) {
-        return delegate.buscar(id);
+    public UnidadAprendizaje setUnidadAprendizaje(UnidadAprendizaje u)
+    {
+        return delegate.guardar(u);
     }
     
     @Override
