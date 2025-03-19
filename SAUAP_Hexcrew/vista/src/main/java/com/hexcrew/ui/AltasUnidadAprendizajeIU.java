@@ -79,8 +79,10 @@ public class AltasUnidadAprendizajeIU implements Serializable{
         System.out.println("Horas Clase: " + unidadRegistrar.gethorasclase());
         System.out.println("Horas Taller: " + unidadRegistrar.gethorastaller());
         System.out.println("Horas Laboratorio: " + unidadRegistrar.gethoraslab());
-        
-        if (helper.registrarUnidad(unidadRegistrar))
+        System.out.println("Prueba 1.1");
+        boolean valor = helper.registrarUnidad(unidadRegistrar);
+        System.out.println(valor);
+        if (valor)
         {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Unidad de Aprendizaje registrada exitosamente"));
